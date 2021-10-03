@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,33 +8,15 @@ using UnityEngine.Events;
 public class EmpireController : Singleton<EmpireController>
 {
     public UnityEvent<int> OnStabilityChangedEvent;
-
-    public int Gold = 100;
-    
-    public int Army
-    {
-        get => _army;
-        set
-        {
-            _army =  value;
-            if (_army < 0)
-                _army = 0;
-        }
-    }
-    
-    public int Mood
-    {
-        get => _mood;
-        set => _mood = Mathf.Clamp(value, 0, 100);
-    }
+    public UnityEvent<int> OnWinPointsChangedEvent;
 
     public Minister ArmyMinister;
     public Minister MoneyMinister;
     public Minister MoodMinister;
     
-    [SerializeField] private int _stability = 10;
-    [SerializeField] private int _army = 100;
-    [SerializeField] private int _mood = 50;
+    public int MaxStability = 20;
+    private int _stability = 20;
+    private int _winPoints;
     
     private List<Minister> _ministers = new List<Minister>();
     
@@ -45,9 +28,17 @@ public class EmpireController : Singleton<EmpireController>
     protected override void Awake()
     {
         base.Awake();
+
+        _stability = MaxStability;
+        _ministers = new List<Minister>();
         _ministers.Add(ArmyMinister);
         _ministers.Add(MoneyMinister);
         _ministers.Add(MoodMinister);
+    }
+
+    private void Start()
+    {
+        GetMinLevelMinister();    //TEST
     }
 
     public void RemoveMinister(MinisterSuite suite)
@@ -69,6 +60,12 @@ public class EmpireController : Singleton<EmpireController>
         }
     }
 
+    public void AddWinPoint()
+    {
+        _winPoints += 1;
+        OnWinPointsChangedEvent.Invoke(_winPoints);
+    }
+
     public Minister GetMaxLevelMinister()
     {
         return _ministers.OrderByDescending(x => x.Level).First();
@@ -82,6 +79,7 @@ public class EmpireController : Singleton<EmpireController>
     private void ChangeStabilityValue(int delta)
     {
         _stability += delta;
+        _stability = Mathf.Clamp(_stability, 0, MaxStability);
         OnStabilityChangedEvent.Invoke(_stability);
     }
 }

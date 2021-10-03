@@ -17,15 +17,24 @@
             <e p="EmpireController.cs" t="Include" />
             <e p="GameController.cs" t="Include" />
             <e p="GameSettings.cs" t="Include" />
+            <e p="PortraitManager.cs" t="Include" />
           </e>
           <e p="Minister.cs" t="Include" />
+          <e p="Popups" t="Include">
+            <e p="GameOver.cs" t="Include" />
+            <e p="KillTreacker.cs" t="Include" />
+            <e p="Menu.cs" t="Include" />
+            <e p="WinTreaker.cs" t="Include" />
+          </e>
           <e p="Province.cs" t="Include" />
           <e p="TaskCard.cs" t="Include" />
           <e p="TaskCardData.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="UIMinisterHome.cs" t="Include" />
             <e p="UIMinisterLevel.cs" t="Include" />
             <e p="UIStability.cs" t="Include" />
             <e p="UITurnCounter.cs" t="Include" />
+            <e p="UIWinPoints.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
             <e p="Singleton.cs" t="Include" />

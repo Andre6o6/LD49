@@ -1,12 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMinisterLevel : MonoBehaviour
 {
     [SerializeField] private Minister _minister;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private TMP_Text _boredomNumberText;
-    [SerializeField] private TMP_Text _boredomDescText;
+    [SerializeField] private Image _backImage;
+    [SerializeField] private Color _armyColor;
+    [SerializeField] private Color _moneyColor;
+    [SerializeField] private Color _moodColor;
+    [SerializeField] private Image _portraitImage;
+    [SerializeField] private PortraitManager _portraits;
     private int _currentLvl;
     private int _currentBoredom;
 
@@ -16,8 +22,10 @@ public class UIMinisterLevel : MonoBehaviour
         _levelText.text = _currentLvl.ToString();
         
         _currentBoredom = _minister.Boredom;
-        _boredomNumberText.text = _currentBoredom.ToString();
-        _boredomDescText.text = BoredomText(_currentBoredom);
+        //_boredomNumberText.text = _currentBoredom.ToString();
+
+        SetColor();
+        _portraitImage.sprite = _portraits.PortraitForMinister(_minister.Suite);
     }
 
     private void Update()
@@ -28,25 +36,20 @@ public class UIMinisterLevel : MonoBehaviour
             _levelText.text = _currentLvl.ToString();
         }
 
-        if (_minister.Boredom != _currentBoredom)
+        /*if (_minister.Boredom != _currentBoredom)
         {
             _currentBoredom = _minister.Boredom;
             _boredomNumberText.text = _currentBoredom.ToString();
-            _boredomDescText.text = BoredomText(_currentBoredom);
-        }
+        }*/
     }
-
-    private string BoredomText(int boredomValue)
+    
+    private void SetColor()
     {
-        if (boredomValue >= 10)
-            return "Bored to death";
-        else if (boredomValue > 5)
-            return "Bored";
-        else if (boredomValue >= -5)
-            return "Normal";
-        else if (boredomValue > -10)
-            return "Tired";
-        else
-            return "Exhausted";
+        if (_minister.Suite == MinisterSuite.Army)
+            _backImage.color = _armyColor;
+        if (_minister.Suite == MinisterSuite.Money)
+            _backImage.color = _moneyColor;
+        if (_minister.Suite == MinisterSuite.Mood)
+            _backImage.color = _moodColor;
     }
 }

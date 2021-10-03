@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class TaskCard : MonoBehaviour
 {
@@ -9,19 +10,47 @@ public class TaskCard : MonoBehaviour
     
     [SerializeField] private Slot _slot;
     [SerializeField] private TMP_Text _nameText;
-    [SerializeField] private TMP_Text _descriptionText;
+    [SerializeField] private string _levelReqFormat = "LVL {0}";
+    [SerializeField] private TMP_Text _levelReqText;
+    [SerializeField] private string _timeFormat = "TIME\n{0}";
     [SerializeField] private TMP_Text _turnsCountText;
     //TODO suite color
+    [SerializeField] private Image _backCardImage;
+    [SerializeField] private Color _armyColor;
+    [SerializeField] private Color _moneyColor;
+    [SerializeField] private Color _moodColor;
+    [SerializeField] private Image _crownImage;
+    
+    [SerializeField] private Image _winImage;
+    [SerializeField] private Image _loseImage;
+    
+    //Supercard
+    [SerializeField] private bool _supercard;
+    [SerializeField, Range(1, 3)] private int _supercardNumber;
+    [SerializeField] private bool _tutorial;
+    [SerializeField, Range(1, 3)] private int _tutorialNumber;
     
     private TaskCardData _data;
     private int _turnsLeft;
     private int _turnsSolving = 1;
-    //private bool _bufferTurn = true;    //TODO we may lose 1 turn based on how events are ordered
     private bool _destroyNextTurn;
 
     private void Awake()
     {
         _slot ??= GetComponent<Slot>();
+        if (_supercard)
+        {
+            _turnsSolving = 3;
+            if (_supercardNumber == 1) Initialize(AllGameCards.SuperTask1);
+            if (_supercardNumber == 2) Initialize(AllGameCards.SuperTask2);
+            if (_supercardNumber == 3) Initialize(AllGameCards.SuperTask3);
+        }
+        else if (_tutorial)
+        {
+            if (_tutorialNumber == 1) Initialize(AllGameCards.Tutorial1);
+            if (_tutorialNumber == 2) Initialize(AllGameCards.Tutorial2);
+            if (_tutorialNumber == 3) Initialize(AllGameCards.Tutorial3);
+        }
     }
 
     public void Initialize(TaskCardData data)
@@ -29,10 +58,18 @@ public class TaskCard : MonoBehaviour
         _data = data;
             
         _nameText.text = _data.Name;
-        _descriptionText.text = _data.Description;
-        _turnsLeft = _data.TurnsToSolve;
-        _turnsCountText.text = _turnsLeft.ToString();
+        _levelReqText.text = string.Format(_levelReqFormat, _data.LevelRequirement);
+
+        if (!_data.SuperTask)
+        {
+            _turnsLeft = _data.TurnsToSolve;
+            _turnsCountText.text = string.Format(_timeFormat, _turnsLeft);
+        }
+
+        if (_data.WinPoint)
+            _crownImage.gameObject.SetActive(true);
         
+        SetColor();
         GameController.Instance.OnTurnAdvanced.AddListener(TickTimer);
     }
 
@@ -43,6 +80,12 @@ public class TaskCard : MonoBehaviour
 
     private void TickTimer()
     {
+        if (_supercard)
+        {
+            if (_loseImage.gameObject.activeInHierarchy)
+                _loseImage.gameObject.SetActive(false);
+        }
+
         if (_destroyNextTurn)
         {
             DestroySlot();
@@ -51,35 +94,50 @@ public class TaskCard : MonoBehaviour
 
         if (_slot.Empty())
         {
+            if (_data.SuperTask) return;
+            
             _turnsLeft -= 1;
             if (_turnsLeft < 0) //TODO <= 0
             {
                 Fail();
                 return;
             }
-            _turnsCountText.text = _turnsLeft.ToString();
+            _turnsCountText.text = string.Format(_timeFormat, _turnsLeft);
         }
         else
         {
             _turnsSolving -= 1;
             if (_turnsSolving < 0)
             {
-                if (MinisterCanSucceed(_slot.Piece.Minister) &&
-                    _data.ResourceWinConditions.Invoke())
+                if (MinisterCanSucceed(_slot.Piece.Minister))
                     Succeed();
+                else
+                    Fail();
             }
         }
     }
 
     private void Fail()
     {
+        if (_data.SuperTask)
+        {
+            if (!_slot.Empty()) _slot.Piece.ReturnHome();
+            _loseImage.gameObject.SetActive(true);
+            _turnsSolving = 2;
+            return;
+        }
+        
         Minister minister = _slot.Empty() ? null : _slot.Piece.Minister;
         _data.CallbackLose.Invoke(minister);
+        EmpireController.ChangeStability(-1);
+        
+        if (minister != null)
+            minister.ChangeBoredom(-1 - _data.LevelRequirement / 2);
         
         _destroyNextTurn = true;
         _slot.Close();
 
-        _nameText.text += "[X]";
+        _loseImage.gameObject.SetActive(true);
         //TODO graphics
         
         OnTaskFailed.Invoke();
@@ -89,14 +147,17 @@ public class TaskCard : MonoBehaviour
     {
         Minister minister = _slot.Empty() ? null : _slot.Piece.Minister;    //TODO never null ?
         _data.CallbackWin.Invoke(minister);
-        
+
         if (minister != null)
+        {
             minister.GainExperience(_data.LevelRequirement);
-        
+            minister.ChangeBoredom(-1 - _data.LevelRequirement / 2);
+        }
+
         _destroyNextTurn = true;
         _slot.Close();
         
-        _nameText.text += "[V]";
+        _winImage.gameObject.SetActive(true);
         //TODO graphics
     }
 
@@ -155,5 +216,15 @@ public class TaskCard : MonoBehaviour
             float chance = 1f / (GameSettings.BaseUnfavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
             return Random.Range(0, 1f) > chance;
         }
+    }
+    
+    private void SetColor()
+    {
+        if (_data.SuiteRequirement == MinisterSuite.Army)
+            _backCardImage.color = _armyColor;
+        if (_data.SuiteRequirement == MinisterSuite.Money)
+            _backCardImage.color = _moneyColor;
+        if (_data.SuiteRequirement == MinisterSuite.Mood)
+            _backCardImage.color = _moodColor;
     }
 }

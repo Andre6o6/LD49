@@ -22,6 +22,7 @@ public class DeckManager : Singleton<DeckManager>
         _globalDeck.Add(AllGameCards.ForceRecruit);
         _globalDeck.Add(AllGameCards.MinisterCombat);
         _globalDeck.Add(AllGameCards.Revolt);
+        _globalDeck.Add(AllGameCards.RoadBandits);
         _globalDeck.Add(AllGameCards.Raid);
         _globalDeck.Add(AllGameCards.CollectTaxes);
         _globalDeck.Add(AllGameCards.TradeRoute);
@@ -29,13 +30,13 @@ public class DeckManager : Singleton<DeckManager>
         _globalDeck.Add(AllGameCards.Mercenaries);
         _globalDeck.Add(AllGameCards.Hunger);
         _globalDeck.Add(AllGameCards.BrewingMasses);
-        _globalDeck.Add(AllGameCards.FreeSpeech);
+        _globalDeck.Add(AllGameCards.Feud);
         _globalDeck.Add(AllGameCards.ReligionPush);
     }
 
     public TaskCardData Get()
     {
-        var nonImportantDeck = _globalDeck.Where(x => !x.Important && x.ResourceSpawnConditions.Invoke()).ToList();
+        var nonImportantDeck = _globalDeck.Where(x => !x.Important).ToList();
         var cardData = nonImportantDeck[Random.Range(0, nonImportantDeck.Count)];
         if (!cardData.Common)
         {

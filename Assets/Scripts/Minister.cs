@@ -1,26 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Minister : MonoBehaviour
 {
     public int Level { get; private set; }
     public int Boredom { get; private set; }
     public bool CanAct { get; private set; }
+    public bool Dead { get; private set; }
     
     public MinisterSuite Suite => _suite;
     
     [SerializeField] private MinisterSuite _suite;
     [SerializeField] private DragablePiece _piece;
+    [SerializeField] private Image _bloodImage;
     private int _currentExp;
-
-    private bool _bufferTurn;    //TODO fixme: To not get -1 exh as soon as we move
-    
+    private Color _defaultColor;
 
     private void Awake()
     {
         CanAct = true;
+        Level = 1;
         
         _piece ??= GetComponent<DragablePiece>();
         _piece.OnMovedToSlotEvent.AddListener(OnMoveToSlot);
@@ -36,7 +40,8 @@ public class Minister : MonoBehaviour
 
     public void GainExperience(int taskLevel)
     {
-        if (taskLevel <= Level)
+        Level += 1;
+        /*if (taskLevel <= Level)
             _currentExp += 1;
         else
             _currentExp += 1 + (taskLevel - Level);    //TODO balance
@@ -45,7 +50,7 @@ public class Minister : MonoBehaviour
         {
             Level += 1;
             _currentExp = 0;
-        }
+        }*/
     }
 
     public void GainLevel()
@@ -60,58 +65,76 @@ public class Minister : MonoBehaviour
 
     public void ChangeBoredom(int delta)
     {
-        Boredom = Mathf.Clamp(Boredom + delta, -11, 11);
+        Boredom += delta; 
+        Boredom = Mathf.Clamp(Boredom, -11, 11);
     }
 
     public void TryKill()
     {
-        if (Level < 10) return;
+        if (Level < 5) return;
 
-        if (Level - EmpireController.Instance.GetMinLevelMinister().Level > 5)
+        if (Level - EmpireController.Instance.GetMinLevelMinister().Level >= 5)
             EmpireController.Instance.GetMinLevelMinister().Die(this);
     }
 
-    public void Die(Minister killer = null)
+    public void Die(Minister killer)
     {
-        //TODO Particle and sound
-        //TODO game window that tells that 1 killed another
+        Debug.Log(killer, killer);
+
+        _piece.ReturnHome();
         
+        if (_bloodImage != null)
+            _bloodImage.gameObject.SetActive(true);
+
         CanAct = false;
         GameController.Instance.OnTurnAdvanced.RemoveListener(OnAdvanceTurn);
         EmpireController.Instance.RemoveMinister(Suite);
+
+
+        KillTreacker.Instance.OnMinisterDied(this, killer);
+        Dead = true;
     }
 
     private void OnMoveToSlot()
     {
-        _bufferTurn = true;
         GameController.Instance.AdvanceTurn();
     }
 
     private void OnAdvanceTurn()
     {
+        if (Dead) return;
+        
         if (_piece.IsHome)
         {
-            Boredom += 1;
+            ChangeBoredom(1);
         }
-        else if (!_piece.OnFinishedSlot)
+
+        if (!CanAct && Boredom >= 0) //stop recover
         {
-            if (_bufferTurn)
-            {
-                _bufferTurn = false;
-                return;
-            }
-
-            Boredom -= 1;
+            CanAct = true;
+            GetComponentInChildren<Image>().color = _defaultColor;
         }
 
-        if (!CanAct && Boredom >= 0)    //stop recover
-            CanAct = true;
-        //TODO highlight with color
-        
-        if (CanAct && Boredom <= -10)    //start recover
+        if (CanAct && Boredom <= -10) //start recover
+        {
             CanAct = false;
+            _defaultColor = GetComponentInChildren<Image>().color;
+            GetComponentInChildren<Image>().color  = Color.black;
+        }
 
         if (CanAct) TryKill();
+    }
+
+    public string GetPosition()
+    {
+        if (Suite == MinisterSuite.Army)
+            return "Marshal";
+        if (Suite == MinisterSuite.Money)
+            return "Steward";
+        if (Suite == MinisterSuite.Mood)
+            return "Chancellor";
+
+        return "";
     }
 }
 

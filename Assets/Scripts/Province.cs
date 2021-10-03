@@ -12,13 +12,25 @@ public class Province : MonoBehaviour
     [SerializeField] private int _depth = 1;
     [SerializeField] private int _minIdleTime;
     [SerializeField] private int _maxIdleTime;
+    
+    [SerializeField] private TaskCard _blockerCard;
 
     private readonly List<TaskCard> _tasks = new List<TaskCard>();
     private int _currentIdleTime;
 
     private void Awake()
     {
-        GameController.Instance.OnTurnAdvanced.AddListener(OnNewTurn);
+        if (_blockerCard != null)
+        {
+            _blockerCard.OnCardDestroyed.AddListener(
+                () => GameController.Instance.OnTurnAdvanced.AddListener(OnNewTurn)
+            );
+        }
+        else
+        {
+            GameController.Instance.OnTurnAdvanced.AddListener(OnNewTurn);
+        }
+
     }
 
     private void OnNewTurn()
@@ -47,29 +59,13 @@ public class Province : MonoBehaviour
     private void AddCard(TaskCardData data, bool top = false)
     {
         var card = Instantiate(_cardPrefab, this.transform);
-
-        if (top)
-        {
-            card.transform.SetAsLastSibling();
-            _tasks.Insert(0, card);
-        }
-        else
-        {
-            card.transform.SetAsFirstSibling();
-            _tasks.Add(card);
-        }
+        
+        card.transform.SetAsLastSibling();
+        _tasks.Insert(0, card);
 
         card.Initialize(data);
-        
-        card.OnTaskFailed.AddListener(() => FailedTask(card));
+
         card.OnCardDestroyed.AddListener(() => _tasks.Remove(card));
     }
 
-    private void FailedTask(TaskCard task)
-    {
-        if (task != _tasks[0])
-        {
-            EmpireController.ChangeStability(-1);
-        }
-    }
 }

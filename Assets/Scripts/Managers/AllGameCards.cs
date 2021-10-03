@@ -16,49 +16,26 @@ public class AllGameCards
     public static TaskCardData TrainArmy = new TaskCardData()
     {
         Name = "Train army",
-        Description = "Train army description (need 100 ppl)",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 2,
         CallbackLose = (_) =>
-        {
-            EmpireController.Instance.Army -= 50;
-            EmpireController.Instance.Mood -= 1;
-        },
+        { },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army = (int)(1.2f * EmpireController.Instance.Army);
-        },
+        { },
         LevelRequirement = 2,
-        ResourceSpawnConditions = () => EmpireController.Instance.Army > 100,
     };
     public static TaskCardData ForceRecruit = new TaskCardData()
     {
-        Name = "Recruit villagers",
-        Description = "Recruit villagers description (<100 ppl)",
+        Name = "Recruit levies",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 3,
-        CallbackLose = (minister) =>
-        {
-            if (minister != null)
-            {
-                EmpireController.Instance.Army -= 10;
-                EmpireController.Instance.Mood -= 10;
-                //TODO can add some card
-            }
-            EmpireController.Instance.Mood -= 5;
-        },
-        CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army += 50;
-            EmpireController.Instance.Mood -= 10;
-        },
+        CallbackLose = (minister) => { },
+        CallbackWin = (_) => { },
         LevelRequirement = 1,
-        ResourceSpawnConditions = () => EmpireController.Instance.Army < 75,
     };
     public static TaskCardData MinisterCombat = new TaskCardData()
     {
         Name = "Duel",
-        Description = "Duel description",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (minister) =>
@@ -67,11 +44,6 @@ public class AllGameCards
             {
                 minister.ChangeBoredom(-5);
             }
-            else
-            {
-                EmpireController.Instance.ArmyMinister.LoseLevel();
-            }
-            EmpireController.Instance.Mood -= 5;
         },
         CallbackWin = (minister) =>
         {
@@ -79,312 +51,210 @@ public class AllGameCards
             minister.GainLevel();
         },
         LevelRequirement = 5,
-        ResourceSpawnConditions = () => EmpireController.Instance.ArmyMinister != null && 
-                                        EmpireController.Instance.ArmyMinister.Level >= 4,
     };
     public static TaskCardData Revolt = new TaskCardData()
     {
         Name = "Revolt",
-        Description = "Small peasant revolt, 10 ppl to suppress",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Army -= 5;
-            EmpireController.Instance.Mood -= 5;
             DeckManager.AddCardToGlobalDeck(Revolt2);
         },
         CallbackWin = (_) =>
         {
-            EmpireController.Instance.Army -= 10;
         },
         LevelRequirement = 1,
-        ResourceSpawnConditions = () => EmpireController.Instance.Mood < 30,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 10
     };
     public static TaskCardData RevoltImportant = new TaskCardData()
     {
         Name = "Revolt",
-        Description = "Small peasant revolt, 10 ppl to suppress",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Army -= 5;
-            EmpireController.Instance.Mood -= 5;
             DeckManager.AddCardToGlobalDeck(Revolt2);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army -= 10;
-        },
+        {},
         LevelRequirement = 1,
         Common = false,
         Important = true,
         DestroyOnFinish = true,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 10
     };
     public static TaskCardData Revolt2 = new TaskCardData()
     {
         Name = "Revolt",
-        Description = "Peasant revolt, 25 ppl to suppress",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Army -= 10;
-            EmpireController.Instance.Mood -= 10;
             DeckManager.AddCardToGlobalDeck(Revolt3);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army -= 25;
-        },
+        {},
         LevelRequirement = 2,
         Common = false,
-        ResourceSpawnConditions = () => EmpireController.Instance.Mood < 20,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 25
     };
     public static TaskCardData Revolt3 = new TaskCardData()
     {
         Name = "Revolt",
-        Description = "Big peasant revolt, 50 ppl to suppress",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
-        {
-            EmpireController.Instance.Army -= 25;
-            EmpireController.Instance.Mood -= 10;
-        },
+        {},
         CallbackWin = (_) =>
         {
-            EmpireController.Instance.Army -= 50;
             DeckManager.AddCardToGlobalDeck(Revolt2);
         },
         LevelRequirement = 4,
         Common = false,
         Important = true,
-        ResourceSpawnConditions = () => EmpireController.Instance.Mood < 10,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 50
     };
     public static TaskCardData Raid = new TaskCardData()
     {
-        Name = "Raid",
-        Description = "Raid neighbours with 100 ppl",
+        Name = "Raid by nomads",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 3,
         CallbackLose = (minister) =>
-        {
-            if (minister != null)
-            {
-                EmpireController.Instance.Army -= 50;
-                EmpireController.Instance.Mood -= 4;
-            }
-            EmpireController.Instance.Mood -= 1;
-        },
+        { },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army -= 25;
-            EmpireController.Instance.Gold += 100;
-            EmpireController.Instance.Mood += 10;    //FIXME ?
-        },
+        { },
         LevelRequirement = 3,
-        ResourceSpawnConditions = () => EmpireController.Instance.Army >= 100,
     };
     public static TaskCardData RoadBanditsImportant = new TaskCardData()
     {
-        Name = "Bandits",
-        Description = "Bandits roam the roads",
+        Name = "Road bandits",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
-        {
-            EmpireController.Instance.Gold -= 50;
-            EmpireController.Instance.Mood -= 5;
-        },
+        { },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army -= 10;
-        },
+        { },
         LevelRequirement = 2,
         Common = false,
         Important = true,
         DestroyOnFinish = true,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 10,
     };
     public static TaskCardData RoadBandits = new TaskCardData()
     {
-        Name = "Bandits",
-        Description = "Bandits roam the roads",
+        Name = "Road bandits",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
-        {
-            EmpireController.Instance.Gold -= 50;
-            EmpireController.Instance.Mood -= 5;
-        },
+        { },
         CallbackWin = (_) =>
         {
-            EmpireController.Instance.Army -= 10;
         },
         LevelRequirement = 2,
         Common = false,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 10,
     };
     public static TaskCardData RogueMercenaries = new TaskCardData()
     {
-        Name = "Mercenaries went rogue",
-        Description = "Bandits roam the roads",
+        Name = "Rogue mercenaries",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Mood -= 10;
             DeckManager.AddCardToGlobalDeck(RoadBandits);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Army -= 75;
-        },
+        { },
         LevelRequirement = 4,
         Common = false,
         Important = true,
         DestroyOnFinish = true,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 75,
     };
     public static TaskCardData SatanCult = new TaskCardData()
     {
-        Name = "SatanCult",
-        Description = "Massacre",
+        Name = "Satan cult",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
             DeckManager.AddCardToGlobalDeck(SatanCult);
-            EmpireController.Instance.Mood -= 10;
-            EmpireController.Instance.Army -= 75;
         },
         CallbackWin = (_) =>
         {
-            EmpireController.Instance.Mood -= 10;
-            EmpireController.Instance.Army -= 50;
         },
         Common = false,
         DestroyOnFinish = true,
         LevelRequirement = 6,
-        ResourceWinConditions = () => EmpireController.Instance.Army >= 75,
     };
     //TODO monster chain
     
     //MONEY
     public static TaskCardData CollectTaxes = new TaskCardData()
     {
-        Name = "Taxes",
-        Description = "Collect taxes",
+        Name = "Collect taxes",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            if (minister != null)
-                EmpireController.Instance.Mood -= 10;
-            else
-                DeckManager.AddCardToGlobalDeck(TaxEvaders);
+            DeckManager.AddCardToGlobalDeck(TaxEvaders);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Gold += 50;
-        },
+        { },
         LevelRequirement = 1,
     };
     public static TaskCardData TaxEvaders = new TaskCardData()
     {
         Name = "Tax evaders",
-        Description = "Tax evaders desc",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
             DeckManager.AddCardToGlobalDeck(TaxEvaders);
             DeckManager.AddCardToGlobalDeck(Revolt2);
-            EmpireController.Instance.Mood -= 5;
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 10;
-            EmpireController.Instance.Gold += 75;
-        },
+        { },
         Common = false,
         DestroyOnFinish = true,
         LevelRequirement = 3,
     };
     public static TaskCardData TradeRoute = new TaskCardData()
     {
-        Name = "Trade route",
-        Description = "Establish new trade route",
+        Name = "Establish trade route",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            if (minister != null)
-            {
-                EmpireController.Instance.Gold -= 100;
-            }
             DeckManager.AddCardToGlobalDeck(RoadBanditsImportant);
         },
         CallbackWin = (_) =>
         {
-            EmpireController.Instance.Gold -= 100;
             DeckManager.AddCardToGlobalDeck(TradeDeal);
         },
         LevelRequirement = 3,
-        ResourceWinConditions = () => EmpireController.Instance.Gold >= 100,
     };
     public static TaskCardData TradeDeal = new TaskCardData()
     {
-        Name = "Trade deal",
-        Description = "New trade opportunity",
+        Name = "Shady trade deal",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 3,
         CallbackLose = (minister) =>
-        {
-            if (minister)
-            {
-                EmpireController.Instance.Gold -= 100;
-            }
-        },
+        { },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Gold += 200;
-        },
+        { },
         Common = false,
         DestroyOnFinish = true,
         LevelRequirement = 4,
     };
     public static TaskCardData MintCoins = new TaskCardData()
     {
-        Name = "Mint coins",
-        Description = "Add more copper to gold coins",
+        Name = "Mint more coins",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 3,
         CallbackLose = (minister) =>
-        {
-            if (minister != null)
-            {
-                EmpireController.Instance.Mood -= 15;
-                EmpireController.Instance.Gold += 50;
-            }
-        },
+        { },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 10;
-            EmpireController.Instance.Gold += 100;
-        },
+        { },
         LevelRequirement = 2,
     };
     public static TaskCardData Mercenaries = new TaskCardData()
     {
-        Name = "Hire mercenaries",
-        Description = "Hire mercenaries",
+        Name = "Bribe mercenary band",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 3,
         CallbackLose = (minister) =>
@@ -392,17 +262,12 @@ public class AllGameCards
             DeckManager.AddCardToGlobalDeck(RogueMercenaries);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Gold -= 100;
-            EmpireController.Instance.Army += 100;
-        },
+        { },
         LevelRequirement = 4,
-        ResourceWinConditions = () => EmpireController.Instance.Gold >= 100,
     };
     public static TaskCardData BuyCropsFamine = new TaskCardData()
     {
-        Name = "Buy crops",
-        Description = "Cure famine",
+        Name = "Import more crops",
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
@@ -411,45 +276,35 @@ public class AllGameCards
             DeckManager.AddCardToGlobalDeck(Famine);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood += 10;
-            EmpireController.Instance.Gold -= 50;
-        },
+        { },
         LevelRequirement = 3,
         Important = true,
         DestroyOnFinish = true,
-        ResourceWinConditions = () => EmpireController.Instance.Gold >= 50,
     };
     //TODO Smugglers
     
     //MOOD
     public static TaskCardData Hunger = new TaskCardData()
     {
-        Name = "Hunger",
-        Description = "Hunger desc",
+        Name = "Hunger in villages",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Mood -= 5;
             DeckManager.AddCardToGlobalDeck(Famine);
-            DeckManager.AddCardToGlobalDeck(Revolt);    //? RevoltImportant
+            DeckManager.AddCardToGlobalDeck(Revolt);
         },
         CallbackWin = (_) =>
-        {
-            
-        },
+        { },
         LevelRequirement = 1,
     };
     public static TaskCardData Famine = new TaskCardData()
     {
         Name = "Famine",
-        Description = "Famine desc",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Mood -= 10;
             DeckManager.AddCardToGlobalDeck(Revolt2);
             DeckManager.AddCardToGlobalDeck(BigFamine);
         },
@@ -464,30 +319,35 @@ public class AllGameCards
     public static TaskCardData BigFamine = new TaskCardData()
     {
         Name = "Famine",
-        Description = "Big famine desc",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Mood -= 10;
             DeckManager.AddCardToGlobalDeck(Revolt3);
             DeckManager.AddCardToGlobalDeck(Famine);
         },
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToGlobalDeck(Famine);
-            EmpireController.Instance.Gold -= 100;
         },
         Common = false,
         Important = true,
         DestroyOnFinish = true,
         LevelRequirement = 5,
-        ResourceWinConditions = () => EmpireController.Instance.Gold >= 100,
+    };
+    public static TaskCardData Feud = new TaskCardData()
+    {
+        Name = "Reconcile a feud",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {},
+        CallbackWin = (_) => { },
+        LevelRequirement = 2,
     };
     public static TaskCardData BrewingMasses = new TaskCardData()
     {
-        Name = "BrewingMasses",
-        Description = "Protests, etc",
+        Name = "Quell civil unrest",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
@@ -495,67 +355,335 @@ public class AllGameCards
             DeckManager.AddCardToGlobalDeck(Revolt);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 5;
-        },
+        { },
         Common = false,
         LevelRequirement = 3,
-        ResourceSpawnConditions = () => EmpireController.Instance.Mood < 50,
-    };
-    public static TaskCardData FreeSpeech = new TaskCardData()
-    {
-        Name = "FreeSpeech",
-        Description = "Desc",
-        SuiteRequirement = MinisterSuite.Mood,
-        TurnsToSolve = 4,
-        CallbackLose = (_) =>
-        {
-            EmpireController.Instance.Mood += 10;
-            DeckManager.AddCardToGlobalDeck(BrewingMasses);
-        },
-        CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 5;
-        },
-        Common = false,
-        LevelRequirement = 1,
-        ResourceSpawnConditions = () => EmpireController.Instance.Mood < 50,
     };
     public static TaskCardData ReligionPush = new TaskCardData()
     {
-        Name = "Religion",
-        Description = "",
+        Name = "Prosecute nonbelievers",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            EmpireController.Instance.Mood += 5;
             DeckManager.AddCardToGlobalDeck(PaganCults);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 5;
-        },
+        { },
         LevelRequirement = 2,
     };
     public static TaskCardData PaganCults = new TaskCardData()
     {
-        Name = "PaganCults",
-        Description = "",
+        Name = "Pagan cults",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            EmpireController.Instance.Mood += 10;
             DeckManager.AddCardToGlobalDeck(PaganCults);
             DeckManager.AddCardToGlobalDeck(SatanCult);
         },
         CallbackWin = (_) =>
-        {
-            EmpireController.Instance.Mood -= 10;
-        },
+        { },
         Common = false,
         LevelRequirement = 4,
     };
     
+    public static TaskCardData SuperTask1 = new TaskCardData()
+    {
+        Name = "Deal with Nomans Steppe",
+        SuiteRequirement = MinisterSuite.None,
+        TurnsToSolve = 0,
+        CallbackLose = (_) => { },
+        CallbackWin = FinishSuperTask,
+        SuperTask = true,
+        DestroyOnFinish = true,
+        LevelRequirement = 6,
+    };
+    public static TaskCardData SuperTask2 = new TaskCardData()
+    {
+        Name = "Deal with  Bohemian Province",
+        SuiteRequirement = MinisterSuite.None,
+        TurnsToSolve = 0,
+        CallbackLose = (_) => { },
+        CallbackWin = FinishSuperTask,
+        SuperTask = true,
+        DestroyOnFinish = true,
+        LevelRequirement = 7,
+    };
+    public static TaskCardData SuperTask3 = new TaskCardData()
+    {
+        Name = "Deal with Blue Isles",
+        SuiteRequirement = MinisterSuite.None,
+        TurnsToSolve = 0,
+        CallbackLose = (_) => { },
+        CallbackWin = FinishSuperTask,
+        SuperTask = true,
+        DestroyOnFinish = true,
+        LevelRequirement = 8,
+    };
+
+    private static void FinishSuperTask(Minister minister)
+    {
+        if (minister.Suite == MinisterSuite.Army)
+            DeckManager.AddCardToGlobalDeck(War);
+        if (minister.Suite == MinisterSuite.Money)
+            DeckManager.AddCardToGlobalDeck(BuyRevolts1);
+        if (minister.Suite == MinisterSuite.Mood)
+            DeckManager.AddCardToGlobalDeck(SpyStart);
+    }
+    
+    public static TaskCardData War = new TaskCardData()
+    {
+        Name = "War declared!",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle1);
+            DeckManager.AddCardToGlobalDeck(BattleImportant);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle1);
+        },
+        LevelRequirement = 6,
+        Common = false,
+        Important = true,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Battle1 = new TaskCardData()
+    {
+        Name = "Battle",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle1);
+            DeckManager.AddCardToGlobalDeck(BattleImportant);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle2);
+        },
+        LevelRequirement = 7,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData BattleImportant = new TaskCardData()
+    {
+        Name = "Town is under siege",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        {
+            EmpireController.ChangeStability(-1);
+        },
+        CallbackWin = (_) =>
+        {
+        },
+        LevelRequirement = 5,
+        Common = false,
+        Important = true,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Battle2 = new TaskCardData()
+    {
+        Name = "Surround enemy army",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle1);
+            DeckManager.AddCardToGlobalDeck(RogueMercenaries);
+            DeckManager.AddCardToGlobalDeck(RoadBandits);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle3);
+        },
+        LevelRequirement = 8,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Battle3 = new TaskCardData()
+    {
+        Name = "Storm the capital",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Battle1);
+        },
+        CallbackWin = (_) =>
+        {
+            EmpireController.Instance.AddWinPoint();
+            EmpireController.ChangeStability(3);
+        },
+        LevelRequirement = 9,
+        Common = false,
+        WinPoint = true,
+        DestroyOnFinish = true,
+    };
+    
+    public static TaskCardData BuyRevolts1 = new TaskCardData()
+    {
+        Name = "Supply foreign revolts",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 3,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(BuyRevoltsRepeat);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(BuyRevolts2);
+            DeckManager.AddCardToGlobalDeck(BuyRevolts2);
+            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+        },
+        LevelRequirement = 7,
+        Common = false,
+        Important = true,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData BuyRevoltsRepeat = new TaskCardData()
+    {
+        Name = "Supply foreign revolts",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 3,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(BuyRevoltsRepeat);
+            DeckManager.AddCardToGlobalDeck(Revolt2);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+        },
+        LevelRequirement = 7,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    
+    public static TaskCardData BuyRevolts2 = new TaskCardData()
+    {
+        Name = "Smuggle troops",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        { },
+        CallbackWin = (_) =>
+        { },
+        LevelRequirement = 6,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData BuyRevolts3 = new TaskCardData()
+    {
+        Name = "Bribe revolt leaders",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+        },
+        CallbackWin = (_) =>
+        {
+            EmpireController.Instance.AddWinPoint();
+            EmpireController.ChangeStability(3);
+        },
+        LevelRequirement = 10,
+        Common = false,
+        DestroyOnFinish = true,
+        WinPoint = true,
+    };
+    
+    public static TaskCardData SpyStart = new TaskCardData()
+    {
+        Name = "Build spy network",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Spy1);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Assassination);
+        },
+        LevelRequirement = 6,
+        Important = true,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Spy1 = new TaskCardData()
+    {
+        Name = "Build spy network",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Spy1);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Assassination);
+        },
+        LevelRequirement = 6,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Assassination = new TaskCardData()
+    {
+        Name = "Assassinate foreign leader",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToGlobalDeck(Spy1);
+        },
+        CallbackWin = (_) =>
+        {
+            EmpireController.Instance.AddWinPoint();
+            EmpireController.ChangeStability(3);
+        },
+        LevelRequirement = 12,
+        Common = false,
+        DestroyOnFinish = true,
+        WinPoint = true,
+    };
+    
+    //TUTORIAL
+    public static TaskCardData Tutorial1 = new TaskCardData()
+    {
+        Name = "Wear ceremonial sword",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) => { },
+        CallbackWin = (_) => { },
+        LevelRequirement = 1,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Tutorial2 = new TaskCardData()
+    {
+        Name = "Inspect treasury",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 2,
+        CallbackLose = (_) => { },
+        CallbackWin = (_) => { },
+        LevelRequirement = 1,
+        Common = false,
+        DestroyOnFinish = true,
+    };
+    public static TaskCardData Tutorial3 = new TaskCardData()
+    {
+        Name = "Meet nobles",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 3,
+        CallbackLose = (_) => { },
+        CallbackWin = (_) => { },
+        LevelRequirement = 1,
+        Common = false,
+        DestroyOnFinish = true,
+    };
 }
