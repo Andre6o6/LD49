@@ -44,7 +44,7 @@ public class Province : MonoBehaviour
         if (taskData != null && 
             (Empty || !FirstTask.Important))
         {
-            AddCard(taskData, true);
+            AddCard(taskData);
             return;
         }
 
@@ -56,7 +56,7 @@ public class Province : MonoBehaviour
         }
     }
 
-    private void AddCard(TaskCardData data, bool top = false)
+    private void AddCard(TaskCardData data)
     {
         var card = Instantiate(_cardPrefab, this.transform);
         

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskCardData
+[System.Serializable]
+public class TaskCardData : IWeightedItem
 {
     public string Name;
     public int LevelRequirement;
@@ -15,12 +16,16 @@ public class TaskCardData
     public bool Important;    //Ignore idle, but dont spawn on top of deck
     public bool SuperTask;
     public bool WinPoint;
+    public float PriorityChange = 1;
+    public bool GrowPriorityEveryTurn;
+    
+    public float Priority { get; set; } = 1;
 
     public void Dispose()
     {
         if (Common || DestroyOnFinish || Important)  //Don't return importants  
             return;
         
-        DeckManager.AddCardToGlobalDeck(this);
+        DeckManager.AddCardToDeck(this);
     }
 }

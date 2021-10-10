@@ -14,16 +14,12 @@ public class UIMinisterLevel : MonoBehaviour
     [SerializeField] private Image _portraitImage;
     [SerializeField] private PortraitManager _portraits;
     private int _currentLvl;
-    private int _currentBoredom;
 
     private void Start()
     {
         _currentLvl = _minister.Level;
         _levelText.text = _currentLvl.ToString();
         
-        _currentBoredom = _minister.Boredom;
-        //_boredomNumberText.text = _currentBoredom.ToString();
-
         SetColor();
         _portraitImage.sprite = _portraits.PortraitForMinister(_minister.Suite);
     }
@@ -34,13 +30,12 @@ public class UIMinisterLevel : MonoBehaviour
         {
             _currentLvl = _minister.Level;
             _levelText.text = _currentLvl.ToString();
+            
+            //Anim
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.scale(_levelText.gameObject, 1.5f * Vector3.one, 0.2f));
+            seq.append(LeanTween.scale(_levelText.gameObject, Vector3.one, 0.2f));
         }
-
-        /*if (_minister.Boredom != _currentBoredom)
-        {
-            _currentBoredom = _minister.Boredom;
-            _boredomNumberText.text = _currentBoredom.ToString();
-        }*/
     }
     
     private void SetColor()

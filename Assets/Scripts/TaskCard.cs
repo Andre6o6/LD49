@@ -7,6 +7,8 @@ public class TaskCard : MonoBehaviour
 {
     public UnityEvent OnCardDestroyed;
     public UnityEvent OnTaskFailed;
+
+    public MinisterSuite Suite => _data.SuiteRequirement;
     
     [SerializeField] private Slot _slot;
     [SerializeField] private TMP_Text _nameText;
@@ -97,7 +99,7 @@ public class TaskCard : MonoBehaviour
             if (_data.SuperTask) return;
             
             _turnsLeft -= 1;
-            if (_turnsLeft < 0) //TODO <= 0
+            if (_turnsLeft < 0) //TODO <= 0 feels too rash
             {
                 Fail();
                 return;
@@ -132,10 +134,27 @@ public class TaskCard : MonoBehaviour
         EmpireController.ChangeStability(-1);
         
         if (minister != null)
-            minister.ChangeBoredom(-1 - _data.LevelRequirement / 2);
+            minister.ChangeBoredom(-1 - _data.LevelRequirement / GameSettings.ExhaustionLvlDivider);
         
         _destroyNextTurn = true;
         _slot.Close();
+
+        if (!_slot.Empty())
+        {
+            var parent = _levelReqText.transform.parent.gameObject;
+            var angle = new Vector3(0, 0, 15);
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.rotate(parent, angle, 0.1f));
+            seq.append(LeanTween.rotate(parent, -angle, 0.1f));
+            seq.append(LeanTween.rotate(parent, angle, 0.1f));
+            seq.append(LeanTween.rotate(parent, Vector3.zero, 0.05f));
+        }
+        else
+        {
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.scale(_turnsCountText.gameObject, 1.3f * Vector3.one, 0.2f));
+            seq.append(LeanTween.scale(_turnsCountText.gameObject, Vector3.one, 0.3f));
+        }
 
         _loseImage.gameObject.SetActive(true);
         //TODO graphics
@@ -151,14 +170,20 @@ public class TaskCard : MonoBehaviour
         if (minister != null)
         {
             minister.GainExperience(_data.LevelRequirement);
-            minister.ChangeBoredom(-1 - _data.LevelRequirement / 2);
+            minister.ChangeBoredom(-1 - _data.LevelRequirement / GameSettings.ExhaustionLvlDivider);
         }
 
         _destroyNextTurn = true;
         _slot.Close();
+
+        _turnsCountText.text = "";
+        
+        var parent = _levelReqText.transform.parent.gameObject;
+        var seq = LeanTween.sequence();
+        seq.append(LeanTween.scale(parent, 1.3f * Vector3.one, 0.2f));
+        seq.append(LeanTween.scale(parent, Vector3.one, 0.3f));
         
         _winImage.gameObject.SetActive(true);
-        //TODO graphics
     }
 
     private void DestroySlot()

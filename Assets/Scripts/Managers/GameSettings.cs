@@ -1,5 +1,8 @@
 public static class GameSettings
 {
-    public static int BaseFavorableChance = 1;    //more -> harder
-    public static int BaseUnfavorableChance = 1;    //less -> harder
+    public const int BaseFavorableChance = 1; //more -> harder
+    public const int BaseUnfavorableChance = 1; //less -> harder
+    public const int ExhaustionLvlDivider = 3; //less -> harder (more exh)
+    public const int ChainEventPriorityGrowth = 6;
+    public const int ChainFinalEventPriorityGrowth = 3;
 }

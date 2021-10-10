@@ -59,7 +59,7 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt2);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
         {
@@ -73,7 +73,7 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt2);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
         {},
@@ -89,7 +89,7 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt3);
+            DeckManager.AddCardToDeck(Revolt3);
         },
         CallbackWin = (_) =>
         {},
@@ -105,7 +105,7 @@ public class AllGameCards
         {},
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt2);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         LevelRequirement = 4,
         Common = false,
@@ -156,7 +156,7 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(RoadBandits);
+            DeckManager.AddCardToDeck(RoadBandits);
         },
         CallbackWin = (_) =>
         { },
@@ -172,7 +172,7 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(SatanCult);
+            DeckManager.AddCardToDeck(SatanCult);
         },
         CallbackWin = (_) =>
         {
@@ -191,7 +191,7 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToGlobalDeck(TaxEvaders);
+            DeckManager.AddCardToDeck(TaxEvaders);
         },
         CallbackWin = (_) =>
         { },
@@ -204,8 +204,8 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToGlobalDeck(TaxEvaders);
-            DeckManager.AddCardToGlobalDeck(Revolt2);
+            DeckManager.AddCardToDeck(TaxEvaders);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
         { },
@@ -220,11 +220,11 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToGlobalDeck(RoadBanditsImportant);
+            DeckManager.AddCardToDeck(RoadBanditsImportant);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(TradeDeal);
+            DeckManager.AddCardToDeck(TradeDeal);
         },
         LevelRequirement = 3,
     };
@@ -259,7 +259,7 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToGlobalDeck(RogueMercenaries);
+            DeckManager.AddCardToDeck(RogueMercenaries);
         },
         CallbackWin = (_) =>
         { },
@@ -272,8 +272,8 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Hunger);
-            DeckManager.AddCardToGlobalDeck(Famine);
+            DeckManager.AddCardToDeck(Hunger);
+            DeckManager.AddCardToDeck(Famine);
         },
         CallbackWin = (_) =>
         { },
@@ -291,8 +291,8 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Famine);
-            DeckManager.AddCardToGlobalDeck(Revolt);
+            DeckManager.AddCardToDeck(Famine);
+            DeckManager.AddCardToDeck(Revolt);
         },
         CallbackWin = (_) =>
         { },
@@ -305,12 +305,12 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt2);
-            DeckManager.AddCardToGlobalDeck(BigFamine);
+            DeckManager.AddCardToDeck(Revolt2);
+            DeckManager.AddCardToDeck(BigFamine);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyCropsFamine);
+            DeckManager.AddCardToDeck(BuyCropsFamine);
         },
         Common = false,
         DestroyOnFinish = true,
@@ -323,12 +323,12 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt3);
-            DeckManager.AddCardToGlobalDeck(Famine);
+            DeckManager.AddCardToDeck(Revolt3);
+            DeckManager.AddCardToDeck(Famine);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Famine);
+            DeckManager.AddCardToDeck(Famine);
         },
         Common = false,
         Important = true,
@@ -352,7 +352,7 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Revolt);
+            DeckManager.AddCardToDeck(Revolt);
         },
         CallbackWin = (_) =>
         { },
@@ -366,7 +366,7 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(PaganCults);
+            DeckManager.AddCardToDeck(PaganCults);
         },
         CallbackWin = (_) =>
         { },
@@ -379,8 +379,8 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToGlobalDeck(PaganCults);
-            DeckManager.AddCardToGlobalDeck(SatanCult);
+            DeckManager.AddCardToDeck(PaganCults);
+            DeckManager.AddCardToDeck(SatanCult);
         },
         CallbackWin = (_) =>
         { },
@@ -425,11 +425,11 @@ public class AllGameCards
     private static void FinishSuperTask(Minister minister)
     {
         if (minister.Suite == MinisterSuite.Army)
-            DeckManager.AddCardToGlobalDeck(War);
+            DeckManager.AddCardToDeck(War);
         if (minister.Suite == MinisterSuite.Money)
-            DeckManager.AddCardToGlobalDeck(BuyRevolts1);
+            DeckManager.AddCardToDeck(BuyRevolts1);
         if (minister.Suite == MinisterSuite.Mood)
-            DeckManager.AddCardToGlobalDeck(SpyStart);
+            DeckManager.AddCardToDeck(SpyStart);
     }
     
     public static TaskCardData War = new TaskCardData()
@@ -439,12 +439,12 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle1);
-            DeckManager.AddCardToGlobalDeck(BattleImportant);
+            DeckManager.AddCardToDeck(Battle1);
+            DeckManager.AddCardToDeck(BattleImportant);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle1);
+            DeckManager.AddCardToDeck(Battle1);
         },
         LevelRequirement = 6,
         Common = false,
@@ -458,16 +458,18 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle1);
-            DeckManager.AddCardToGlobalDeck(BattleImportant);
+            DeckManager.AddCardToDeck(Battle1);
+            DeckManager.AddCardToDeck(BattleImportant);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle2);
+            DeckManager.AddCardToDeck(Battle2);
         },
         LevelRequirement = 7,
         Common = false,
         DestroyOnFinish = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
     public static TaskCardData BattleImportant = new TaskCardData()
     {
@@ -493,17 +495,19 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle1);
-            DeckManager.AddCardToGlobalDeck(RogueMercenaries);
-            DeckManager.AddCardToGlobalDeck(RoadBandits);
+            DeckManager.AddCardToDeck(Battle1);
+            DeckManager.AddCardToDeck(RogueMercenaries);
+            DeckManager.AddCardToDeck(RoadBandits);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle3);
+            DeckManager.AddCardToDeck(Battle3);
         },
         LevelRequirement = 8,
         Common = false,
         DestroyOnFinish = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
     public static TaskCardData Battle3 = new TaskCardData()
     {
@@ -512,7 +516,7 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Battle1);
+            DeckManager.AddCardToDeck(Battle1);
         },
         CallbackWin = (_) =>
         {
@@ -523,6 +527,8 @@ public class AllGameCards
         Common = false,
         WinPoint = true,
         DestroyOnFinish = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
     };
     
     public static TaskCardData BuyRevolts1 = new TaskCardData()
@@ -532,13 +538,13 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyRevoltsRepeat);
+            DeckManager.AddCardToDeck(BuyRevoltsRepeat);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyRevolts2);
-            DeckManager.AddCardToGlobalDeck(BuyRevolts2);
-            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+            DeckManager.AddCardToDeck(BuyRevolts2);
+            DeckManager.AddCardToDeck(BuyRevolts2);
+            DeckManager.AddCardToDeck(BuyRevolts3);
         },
         LevelRequirement = 7,
         Common = false,
@@ -552,16 +558,18 @@ public class AllGameCards
         TurnsToSolve = 3,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyRevoltsRepeat);
-            DeckManager.AddCardToGlobalDeck(Revolt2);
+            DeckManager.AddCardToDeck(BuyRevoltsRepeat);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+            DeckManager.AddCardToDeck(BuyRevolts3);
         },
         LevelRequirement = 7,
         Common = false,
         DestroyOnFinish = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
     
     public static TaskCardData BuyRevolts2 = new TaskCardData()
@@ -584,7 +592,7 @@ public class AllGameCards
         TurnsToSolve = 4,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(BuyRevolts3);
+            DeckManager.AddCardToDeck(BuyRevolts3);
         },
         CallbackWin = (_) =>
         {
@@ -595,6 +603,8 @@ public class AllGameCards
         Common = false,
         DestroyOnFinish = true,
         WinPoint = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
     };
     
     public static TaskCardData SpyStart = new TaskCardData()
@@ -604,11 +614,11 @@ public class AllGameCards
         TurnsToSolve = 4,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Spy1);
+            DeckManager.AddCardToDeck(Spy1);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Assassination);
+            DeckManager.AddCardToDeck(Assassination);
         },
         LevelRequirement = 6,
         Important = true,
@@ -622,15 +632,17 @@ public class AllGameCards
         TurnsToSolve = 4,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Spy1);
+            DeckManager.AddCardToDeck(Spy1);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Assassination);
+            DeckManager.AddCardToDeck(Assassination);
         },
         LevelRequirement = 6,
         Common = false,
         DestroyOnFinish = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
     public static TaskCardData Assassination = new TaskCardData()
     {
@@ -639,7 +651,7 @@ public class AllGameCards
         TurnsToSolve = 4,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToGlobalDeck(Spy1);
+            DeckManager.AddCardToDeck(Spy1);
         },
         CallbackWin = (_) =>
         {
@@ -650,6 +662,8 @@ public class AllGameCards
         Common = false,
         DestroyOnFinish = true,
         WinPoint = true,
+        GrowPriorityEveryTurn = true,
+        PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
     };
     
     //TUTORIAL

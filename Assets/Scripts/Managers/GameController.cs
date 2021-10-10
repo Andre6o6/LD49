@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GameController : Singleton<GameController>
 {
     public UnityEvent OnTurnAdvanced;
+    public UnityEvent OnAfterTurnAdvanced;
     
     public int Turn { get; private set; }
 
@@ -13,5 +14,6 @@ public class GameController : Singleton<GameController>
     {
         Turn += 1;
         OnTurnAdvanced.Invoke();
+        OnAfterTurnAdvanced.Invoke();
     }
 }

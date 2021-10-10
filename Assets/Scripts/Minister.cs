@@ -40,17 +40,12 @@ public class Minister : MonoBehaviour
 
     public void GainExperience(int taskLevel)
     {
-        Level += 1;
-        /*if (taskLevel <= Level)
-            _currentExp += 1;
-        else
-            _currentExp += 1 + (taskLevel - Level);    //TODO balance
-
-        if (_currentExp >= Level / 2)
+        _currentExp += taskLevel;
+        if (_currentExp >= Level)
         {
+            _currentExp -= Level;
             Level += 1;
-            _currentExp = 0;
-        }*/
+        }
     }
 
     public void GainLevel()
@@ -79,8 +74,6 @@ public class Minister : MonoBehaviour
 
     public void Die(Minister killer)
     {
-        Debug.Log(killer, killer);
-
         _piece.ReturnHome();
         
         if (_bloodImage != null)

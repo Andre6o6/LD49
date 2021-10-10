@@ -5,19 +5,49 @@ using UnityEngine;
 
 public class DeckManager : Singleton<DeckManager>
 {
-    private List<TaskCardData> _globalDeck;
+    private WeightedList<TaskCardData> _globalDeck;
+    private List<TaskCardData> _importantDeck;
     
-    public static void AddCardToGlobalDeck(TaskCardData card)
+    public static void AddCardToDeck(TaskCardData card)
     {
-        if (card.Common) Debug.LogWarning($"Adding common card {card}");
-        Instance._globalDeck.Add(card);
+        if (card.Common && Instance._globalDeck.Contains(card))
+        {
+            Instance._globalDeck.UpdatePriority(card, card.PriorityChange);
+            Debug.Log($"{card.Name}'s priority set to {card.Priority}");
+            return;
+        }
+
+        if (card.Important)
+        {
+            Instance._importantDeck.Add(card);
+        }
+        else
+        {
+            Instance._globalDeck.Add(card);
+        }
     }
-    
+
+    public static void RemoveCardFromDeck(TaskCardData card)
+    {
+        if (!Instance._globalDeck.Contains(card)) return;
+        
+        if (card.Common)
+        {
+            Instance._globalDeck.UpdatePriority(card, -card.PriorityChange);
+            Debug.Log($"{card.Name}'s priority set to {card.Priority}");
+        }
+        else if (!card.Important)
+        {
+            Instance._globalDeck.Remove(card);
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
         
-        _globalDeck = new List<TaskCardData>();
+        _importantDeck = new List<TaskCardData>();
+        _globalDeck = new WeightedList<TaskCardData>();
         _globalDeck.Add(AllGameCards.TrainArmy);
         _globalDeck.Add(AllGameCards.ForceRecruit);
         _globalDeck.Add(AllGameCards.MinisterCombat);
@@ -32,15 +62,16 @@ public class DeckManager : Singleton<DeckManager>
         _globalDeck.Add(AllGameCards.BrewingMasses);
         _globalDeck.Add(AllGameCards.Feud);
         _globalDeck.Add(AllGameCards.ReligionPush);
+
+        GameController.Instance.OnAfterTurnAdvanced.AddListener(GrowPriorityEveryTurn);
     }
 
     public TaskCardData Get()
     {
-        var nonImportantDeck = _globalDeck.Where(x => !x.Important).ToList();
-        var cardData = nonImportantDeck[Random.Range(0, nonImportantDeck.Count)];
+        var cardData = _globalDeck.GetRandom();
         if (!cardData.Common)
         {
-            _globalDeck.Remove(cardData);
+            _globalDeck.Remove(cardData);    //TODO ???
         }
 
         return cardData;
@@ -48,8 +79,20 @@ public class DeckManager : Singleton<DeckManager>
     
     public TaskCardData GetImportant()
     {
-        var cardData = _globalDeck.Find(x => x.Important);
-        _globalDeck.Remove(cardData);    //Importants never common
+        if (_importantDeck.Count == 0)
+            return null;
+        
+        var cardData = _importantDeck[0];
+        _importantDeck.Remove(cardData);    //Importants never common
         return cardData;
+    }
+
+    public void GrowPriorityEveryTurn()
+    {
+        _globalDeck.List.ForEach(x =>
+            {
+                if (x.GrowPriorityEveryTurn) _globalDeck.UpdatePriority(x, x.PriorityChange);
+            }
+        );
     }
 }
