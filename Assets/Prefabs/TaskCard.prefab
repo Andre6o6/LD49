@@ -696,9 +696,11 @@ MonoBehaviour:
     <b>{0}</b>'
   _turnsCountText: {fileID: 7796951493594121082}
   _backCardImage: {fileID: 5883550748785801473}
-  _armyColor: {r: 0.8584906, g: 0.674914, b: 0.4729797, a: 1}
-  _moneyColor: {r: 0.5720341, g: 0.754717, b: 0.5439658, a: 1}
-  _moodColor: {r: 0.53716624, g: 0.68604916, b: 0.745283, a: 1}
+  _colors:
+    _armyColor: {r: 0.85882354, g: 0.6745098, b: 0.4745098, a: 1}
+    _moneyColor: {r: 0.57254905, g: 0.7529412, b: 0.54509807, a: 1}
+    _moodColor: {r: 0.5372549, g: 0.6862745, b: 0.74509805, a: 1}
+    _defaultColor: {r: 0.65882355, g: 0.65882355, b: 0.6431373, a: 1}
   _crownImage: {fileID: 1919670032506751814}
   _winImage: {fileID: 2296841426211598567}
   _loseImage: {fileID: 3347676946342736776}

@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Minister : MonoBehaviour
 {
-    public int Level { get; private set; }
+    public event System.Action OnMinisterDiedEvent;
+    public event System.Action<int> OnMinisterLevelUpEvent;
+    public event System.Action<int> OnMinisterBoredomChangeEvent;
+
+    public int Level { get; private set; } = 1;
     public int Boredom { get; private set; }
     public bool CanAct { get; private set; }
     public bool Dead { get; private set; }
@@ -17,19 +16,31 @@ public class Minister : MonoBehaviour
     
     [SerializeField] private MinisterSuite _suite;
     [SerializeField] private DragablePiece _piece;
-    [SerializeField] private Image _bloodImage;
+    [SerializeField] private Image _experienceBarImage;
     private int _currentExp;
     private Color _defaultColor;
 
     private void Awake()
     {
         CanAct = true;
-        Level = 1;
         
         _piece ??= GetComponent<DragablePiece>();
-        _piece.OnMovedToSlotEvent.AddListener(OnMoveToSlot);
-
+        _piece.OnMovedToSlotEvent.AddListener(TickTurnTimer);
+        
         GameController.Instance.OnTurnAdvanced.AddListener(OnAdvanceTurn);
+    }
+
+    private void Update()
+    {
+        //TODO: TESTING STUFF
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.L)) GainLevel();
+            if (Input.GetKeyDown(KeyCode.K)) LoseLevel();
+            
+            if (Input.GetKeyDown(KeyCode.A)) ChangeBoredom(+1);
+            if (Input.GetKeyDown(KeyCode.S)) EmpireController.ChangeStability(+1);
+        }
     }
 
     private void OnDestroy()
@@ -44,24 +55,33 @@ public class Minister : MonoBehaviour
         if (_currentExp >= Level)
         {
             _currentExp -= Level;
-            Level += 1;
+            GainLevel();
+
+            //TODO animate bar to fill=1, then to 0
         }
+
+        float newFillAmount = (float) _currentExp / Level;
+        LeanTween.value(this.gameObject, fill => _experienceBarImage.fillAmount = fill,
+            _experienceBarImage.fillAmount, newFillAmount, 0.2f);
     }
 
-    public void GainLevel()
+    public void GainLevel() 
     {
         Level += 1;
+        OnMinisterLevelUpEvent?.Invoke(Level);
     }
 
     public void LoseLevel()
     {
         Level -= 1;
+        OnMinisterLevelUpEvent?.Invoke(Level);
     }
 
     public void ChangeBoredom(int delta)
     {
         Boredom += delta; 
         Boredom = Mathf.Clamp(Boredom, -11, 11);
+        OnMinisterBoredomChangeEvent?.Invoke(Boredom);
     }
 
     public void TryKill()
@@ -75,20 +95,18 @@ public class Minister : MonoBehaviour
     public void Die(Minister killer)
     {
         _piece.ReturnHome();
-        
-        if (_bloodImage != null)
-            _bloodImage.gameObject.SetActive(true);
 
         CanAct = false;
         GameController.Instance.OnTurnAdvanced.RemoveListener(OnAdvanceTurn);
         EmpireController.Instance.RemoveMinister(Suite);
 
-
         KillTreacker.Instance.OnMinisterDied(this, killer);
         Dead = true;
+            
+        OnMinisterDiedEvent?.Invoke();
     }
 
-    private void OnMoveToSlot()
+    private void TickTurnTimer()
     {
         GameController.Instance.AdvanceTurn();
     }
@@ -115,10 +133,10 @@ public class Minister : MonoBehaviour
             GetComponentInChildren<Image>().color  = Color.black;
         }
 
-        if (CanAct) TryKill();
+        if (CanAct) TryKill();    //TODO trait maybe?
     }
 
-    public string GetPosition()
+    public string GetPositionName()
     {
         if (Suite == MinisterSuite.Army)
             return "Marshal";

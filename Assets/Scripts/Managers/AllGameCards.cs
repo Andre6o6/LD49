@@ -1,19 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AllGameCards
 {
-    public static TaskCardData TestCard = new TaskCardData()
-    {
-        Name = "Test",
-        TurnsToSolve = 2,
-        CallbackLose = (_) => Debug.Log("Lose"),
-        CallbackWin = (_) => Debug.Log("Win")
-    };
-    
     //Army
-    public static TaskCardData TrainArmy = new TaskCardData()
+    public static readonly TaskCardData TrainArmy = new TaskCardData()
     {
         Name = "Train army",
         SuiteRequirement = MinisterSuite.Army,
@@ -24,7 +12,7 @@ public class AllGameCards
         { },
         LevelRequirement = 2,
     };
-    public static TaskCardData ForceRecruit = new TaskCardData()
+    public static readonly TaskCardData ForceRecruit = new TaskCardData()
     {
         Name = "Recruit levies",
         SuiteRequirement = MinisterSuite.Army,
@@ -33,7 +21,7 @@ public class AllGameCards
         CallbackWin = (_) => { },
         LevelRequirement = 1,
     };
-    public static TaskCardData MinisterCombat = new TaskCardData()
+    public static readonly TaskCardData MinisterCombat = new TaskCardData()
     {
         Name = "Duel",
         SuiteRequirement = MinisterSuite.Army,
@@ -52,7 +40,7 @@ public class AllGameCards
         },
         LevelRequirement = 5,
     };
-    public static TaskCardData Revolt = new TaskCardData()
+    public static readonly TaskCardData Revolt = new TaskCardData()
     {
         Name = "Revolt",
         SuiteRequirement = MinisterSuite.Army,
@@ -78,11 +66,9 @@ public class AllGameCards
         CallbackWin = (_) =>
         {},
         LevelRequirement = 1,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData Revolt2 = new TaskCardData()
+    public static readonly TaskCardData Revolt2 = new TaskCardData()
     {
         Name = "Revolt",
         SuiteRequirement = MinisterSuite.Army,
@@ -94,9 +80,9 @@ public class AllGameCards
         CallbackWin = (_) =>
         {},
         LevelRequirement = 2,
-        Common = false,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
-    public static TaskCardData Revolt3 = new TaskCardData()
+    public static readonly TaskCardData Revolt3 = new TaskCardData()
     {
         Name = "Revolt",
         SuiteRequirement = MinisterSuite.Army,
@@ -108,10 +94,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Revolt2);
         },
         LevelRequirement = 4,
-        Common = false,
-        Important = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData Raid = new TaskCardData()
+    public static readonly TaskCardData Raid = new TaskCardData()
     {
         Name = "Raid by nomads",
         SuiteRequirement = MinisterSuite.Army,
@@ -122,7 +107,7 @@ public class AllGameCards
         { },
         LevelRequirement = 3,
     };
-    public static TaskCardData RoadBanditsImportant = new TaskCardData()
+    public static readonly TaskCardData RoadBanditsImportant = new TaskCardData()
     {
         Name = "Road bandits",
         SuiteRequirement = MinisterSuite.Army,
@@ -132,11 +117,9 @@ public class AllGameCards
         CallbackWin = (_) =>
         { },
         LevelRequirement = 2,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important
     };
-    public static TaskCardData RoadBandits = new TaskCardData()
+    public static readonly TaskCardData RoadBandits = new TaskCardData()
     {
         Name = "Road bandits",
         SuiteRequirement = MinisterSuite.Army,
@@ -147,9 +130,9 @@ public class AllGameCards
         {
         },
         LevelRequirement = 2,
-        Common = false,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
-    public static TaskCardData RogueMercenaries = new TaskCardData()
+    public static readonly TaskCardData RogueMercenaries = new TaskCardData()
     {
         Name = "Rogue mercenaries",
         SuiteRequirement = MinisterSuite.Army,
@@ -161,11 +144,9 @@ public class AllGameCards
         CallbackWin = (_) =>
         { },
         LevelRequirement = 4,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData SatanCult = new TaskCardData()
+    public static readonly TaskCardData SatanCult = new TaskCardData()
     {
         Name = "Satan cult",
         SuiteRequirement = MinisterSuite.Army,
@@ -177,14 +158,13 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
         },
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 6,
     };
     //TODO monster chain
     
     //MONEY
-    public static TaskCardData CollectTaxes = new TaskCardData()
+    public static readonly TaskCardData CollectTaxes = new TaskCardData()
     {
         Name = "Collect taxes",
         SuiteRequirement = MinisterSuite.Money,
@@ -197,7 +177,7 @@ public class AllGameCards
         { },
         LevelRequirement = 1,
     };
-    public static TaskCardData TaxEvaders = new TaskCardData()
+    public static readonly TaskCardData TaxEvaders = new TaskCardData()
     {
         Name = "Tax evaders",
         SuiteRequirement = MinisterSuite.Money,
@@ -209,11 +189,10 @@ public class AllGameCards
         },
         CallbackWin = (_) =>
         { },
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 3,
     };
-    public static TaskCardData TradeRoute = new TaskCardData()
+    public static readonly TaskCardData TradeRoute = new TaskCardData()
     {
         Name = "Establish trade route",
         SuiteRequirement = MinisterSuite.Money,
@@ -228,7 +207,7 @@ public class AllGameCards
         },
         LevelRequirement = 3,
     };
-    public static TaskCardData TradeDeal = new TaskCardData()
+    public static readonly TaskCardData TradeDeal = new TaskCardData()
     {
         Name = "Shady trade deal",
         SuiteRequirement = MinisterSuite.Money,
@@ -237,11 +216,10 @@ public class AllGameCards
         { },
         CallbackWin = (_) =>
         { },
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 4,
     };
-    public static TaskCardData MintCoins = new TaskCardData()
+    public static readonly TaskCardData MintCoins = new TaskCardData()
     {
         Name = "Mint more coins",
         SuiteRequirement = MinisterSuite.Money,
@@ -252,7 +230,7 @@ public class AllGameCards
         { },
         LevelRequirement = 2,
     };
-    public static TaskCardData Mercenaries = new TaskCardData()
+    public static readonly TaskCardData Mercenaries = new TaskCardData()
     {
         Name = "Bribe mercenary band",
         SuiteRequirement = MinisterSuite.Money,
@@ -265,7 +243,7 @@ public class AllGameCards
         { },
         LevelRequirement = 4,
     };
-    public static TaskCardData BuyCropsFamine = new TaskCardData()
+    public static readonly TaskCardData BuyCropsFamine = new TaskCardData()
     {
         Name = "Import more crops",
         SuiteRequirement = MinisterSuite.Money,
@@ -278,13 +256,12 @@ public class AllGameCards
         CallbackWin = (_) =>
         { },
         LevelRequirement = 3,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
     //TODO Smugglers
     
     //MOOD
-    public static TaskCardData Hunger = new TaskCardData()
+    public static readonly TaskCardData Hunger = new TaskCardData()
     {
         Name = "Hunger in villages",
         SuiteRequirement = MinisterSuite.Mood,
@@ -298,7 +275,7 @@ public class AllGameCards
         { },
         LevelRequirement = 1,
     };
-    public static TaskCardData Famine = new TaskCardData()
+    public static readonly TaskCardData Famine = new TaskCardData()
     {
         Name = "Famine",
         SuiteRequirement = MinisterSuite.Mood,
@@ -312,11 +289,10 @@ public class AllGameCards
         {
             DeckManager.AddCardToDeck(BuyCropsFamine);
         },
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 3,
     };
-    public static TaskCardData BigFamine = new TaskCardData()
+    public static readonly TaskCardData BigFamine = new TaskCardData()
     {
         Name = "Famine",
         SuiteRequirement = MinisterSuite.Mood,
@@ -330,12 +306,10 @@ public class AllGameCards
         {
             DeckManager.AddCardToDeck(Famine);
         },
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
         LevelRequirement = 5,
     };
-    public static TaskCardData Feud = new TaskCardData()
+    public static readonly TaskCardData Feud = new TaskCardData()
     {
         Name = "Reconcile a feud",
         SuiteRequirement = MinisterSuite.Mood,
@@ -345,7 +319,7 @@ public class AllGameCards
         CallbackWin = (_) => { },
         LevelRequirement = 2,
     };
-    public static TaskCardData BrewingMasses = new TaskCardData()
+    public static readonly TaskCardData BrewingMasses = new TaskCardData()
     {
         Name = "Quell civil unrest",
         SuiteRequirement = MinisterSuite.Mood,
@@ -356,10 +330,10 @@ public class AllGameCards
         },
         CallbackWin = (_) =>
         { },
-        Common = false,
+        DrawMode = CardDrawMode.ReturnToDeck,
         LevelRequirement = 3,
     };
-    public static TaskCardData ReligionPush = new TaskCardData()
+    public static readonly TaskCardData ReligionPush = new TaskCardData()
     {
         Name = "Prosecute nonbelievers",
         SuiteRequirement = MinisterSuite.Mood,
@@ -372,7 +346,7 @@ public class AllGameCards
         { },
         LevelRequirement = 2,
     };
-    public static TaskCardData PaganCults = new TaskCardData()
+    public static readonly TaskCardData PaganCults = new TaskCardData()
     {
         Name = "Pagan cults",
         SuiteRequirement = MinisterSuite.Mood,
@@ -384,41 +358,41 @@ public class AllGameCards
         },
         CallbackWin = (_) =>
         { },
-        Common = false,
+        DrawMode = CardDrawMode.ReturnToDeck,
         LevelRequirement = 4,
     };
     
-    public static TaskCardData SuperTask1 = new TaskCardData()
+    public static readonly TaskCardData SuperTask1 = new TaskCardData()
     {
-        Name = "Deal with Nomans Steppe",
+        Name = "Invade Nomans Steppe",
         SuiteRequirement = MinisterSuite.None,
         TurnsToSolve = 0,
         CallbackLose = (_) => { },
         CallbackWin = FinishSuperTask,
         SuperTask = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 6,
     };
-    public static TaskCardData SuperTask2 = new TaskCardData()
+    public static readonly TaskCardData SuperTask2 = new TaskCardData()
     {
-        Name = "Deal with  Bohemian Province",
+        Name = "Invade Bohemian Province",
         SuiteRequirement = MinisterSuite.None,
         TurnsToSolve = 0,
         CallbackLose = (_) => { },
         CallbackWin = FinishSuperTask,
         SuperTask = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 7,
     };
-    public static TaskCardData SuperTask3 = new TaskCardData()
+    public static readonly TaskCardData SuperTask3 = new TaskCardData()
     {
-        Name = "Deal with Blue Isles",
+        Name = "Invade Blue Isles",
         SuiteRequirement = MinisterSuite.None,
         TurnsToSolve = 0,
         CallbackLose = (_) => { },
         CallbackWin = FinishSuperTask,
         SuperTask = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 8,
     };
 
@@ -432,7 +406,7 @@ public class AllGameCards
             DeckManager.AddCardToDeck(SpyStart);
     }
     
-    public static TaskCardData War = new TaskCardData()
+    public static readonly TaskCardData War = new TaskCardData()
     {
         Name = "War declared!",
         SuiteRequirement = MinisterSuite.Mood,
@@ -447,11 +421,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Battle1);
         },
         LevelRequirement = 6,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData Battle1 = new TaskCardData()
+    public static readonly TaskCardData Battle1 = new TaskCardData()
     {
         Name = "Battle",
         SuiteRequirement = MinisterSuite.Army,
@@ -464,14 +436,14 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Battle2);
+            Battle1.ResetPriority();
         },
         LevelRequirement = 7,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
-    public static TaskCardData BattleImportant = new TaskCardData()
+    public static readonly TaskCardData BattleImportant = new TaskCardData()
     {
         Name = "Town is under siege",
         SuiteRequirement = MinisterSuite.Army,
@@ -484,11 +456,9 @@ public class AllGameCards
         {
         },
         LevelRequirement = 5,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData Battle2 = new TaskCardData()
+    public static readonly TaskCardData Battle2 = new TaskCardData()
     {
         Name = "Surround enemy army",
         SuiteRequirement = MinisterSuite.Army,
@@ -502,14 +472,14 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Battle3);
+            Battle2.ResetPriority();
         },
         LevelRequirement = 8,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
-    public static TaskCardData Battle3 = new TaskCardData()
+    public static readonly TaskCardData Battle3 = new TaskCardData()
     {
         Name = "Storm the capital",
         SuiteRequirement = MinisterSuite.Army,
@@ -522,16 +492,16 @@ public class AllGameCards
         {
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
+            Battle3.ResetPriority();
         },
         LevelRequirement = 9,
-        Common = false,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
-        DestroyOnFinish = true,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
     };
     
-    public static TaskCardData BuyRevolts1 = new TaskCardData()
+    public static readonly TaskCardData BuyRevolts1 = new TaskCardData()
     {
         Name = "Supply foreign revolts",
         SuiteRequirement = MinisterSuite.Money,
@@ -547,11 +517,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(BuyRevolts3);
         },
         LevelRequirement = 7,
-        Common = false,
-        Important = true,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData BuyRevoltsRepeat = new TaskCardData()
+    public static readonly TaskCardData BuyRevoltsRepeat = new TaskCardData()
     {
         Name = "Supply foreign revolts",
         SuiteRequirement = MinisterSuite.Money,
@@ -564,15 +532,15 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(BuyRevolts3);
+            BuyRevoltsRepeat.ResetPriority();
         },
         LevelRequirement = 7,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
     
-    public static TaskCardData BuyRevolts2 = new TaskCardData()
+    public static readonly TaskCardData BuyRevolts2 = new TaskCardData()
     {
         Name = "Smuggle troops",
         SuiteRequirement = MinisterSuite.Army,
@@ -582,10 +550,9 @@ public class AllGameCards
         CallbackWin = (_) =>
         { },
         LevelRequirement = 6,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
     };
-    public static TaskCardData BuyRevolts3 = new TaskCardData()
+    public static readonly TaskCardData BuyRevolts3 = new TaskCardData()
     {
         Name = "Bribe revolt leaders",
         SuiteRequirement = MinisterSuite.Money,
@@ -593,21 +560,22 @@ public class AllGameCards
         CallbackLose = (_) =>
         {
             DeckManager.AddCardToDeck(BuyRevolts3);
+            BuyRevolts3.Priority = 0;
         },
         CallbackWin = (_) =>
         {
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
+            BuyRevolts3.ResetPriority();
         },
         LevelRequirement = 10,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
         GrowPriorityEveryTurn = true,
-        PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
+        PriorityChange = 1,
     };
     
-    public static TaskCardData SpyStart = new TaskCardData()
+    public static readonly TaskCardData SpyStart = new TaskCardData()
     {
         Name = "Build spy network",
         SuiteRequirement = MinisterSuite.Mood,
@@ -621,11 +589,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Assassination);
         },
         LevelRequirement = 6,
-        Important = true,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.Important,
     };
-    public static TaskCardData Spy1 = new TaskCardData()
+    public static readonly TaskCardData Spy1 = new TaskCardData()
     {
         Name = "Build spy network",
         SuiteRequirement = MinisterSuite.Mood,
@@ -637,14 +603,14 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Assassination);
+            Spy1.ResetPriority();
         },
         LevelRequirement = 6,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
-    public static TaskCardData Assassination = new TaskCardData()
+    public static readonly TaskCardData Assassination = new TaskCardData()
     {
         Name = "Assassinate foreign leader",
         SuiteRequirement = MinisterSuite.Mood,
@@ -657,17 +623,17 @@ public class AllGameCards
         {
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
+            Assassination.ResetPriority();
         },
         LevelRequirement = 12,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
     };
     
     //TUTORIAL
-    public static TaskCardData Tutorial1 = new TaskCardData()
+    public static readonly TaskCardData Tutorial1 = new TaskCardData()
     {
         Name = "Wear ceremonial sword",
         SuiteRequirement = MinisterSuite.Army,
@@ -675,10 +641,9 @@ public class AllGameCards
         CallbackLose = (_) => { },
         CallbackWin = (_) => { },
         LevelRequirement = 1,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
     };
-    public static TaskCardData Tutorial2 = new TaskCardData()
+    public static readonly TaskCardData Tutorial2 = new TaskCardData()
     {
         Name = "Inspect treasury",
         SuiteRequirement = MinisterSuite.Money,
@@ -686,10 +651,9 @@ public class AllGameCards
         CallbackLose = (_) => { },
         CallbackWin = (_) => { },
         LevelRequirement = 1,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
     };
-    public static TaskCardData Tutorial3 = new TaskCardData()
+    public static readonly TaskCardData Tutorial3 = new TaskCardData()
     {
         Name = "Meet nobles",
         SuiteRequirement = MinisterSuite.Mood,
@@ -697,7 +661,6 @@ public class AllGameCards
         CallbackLose = (_) => { },
         CallbackWin = (_) => { },
         LevelRequirement = 1,
-        Common = false,
-        DestroyOnFinish = true,
+        DrawMode = CardDrawMode.DestroyOnFinish,
     };
 }

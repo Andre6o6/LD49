@@ -15,6 +15,6 @@ public class KillTreacker : Singleton<KillTreacker>
     public void OnMinisterDied(Minister victim, Minister killer)
     {
         _killPopup.SetActive(true);
-        _text.text = string.Format(_format, killer.GetPosition(), victim.GetPosition());
+        _text.text = string.Format(_format, killer.GetPositionName(), victim.GetPositionName());
     }
 }

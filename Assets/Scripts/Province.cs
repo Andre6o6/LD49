@@ -42,7 +42,7 @@ public class Province : MonoBehaviour
 
         var taskData = DeckManager.Instance.GetImportant();
         if (taskData != null && 
-            (Empty || !FirstTask.Important))
+            (Empty || FirstTask.DrawMode != CardDrawMode.Important))
         {
             AddCard(taskData);
             return;

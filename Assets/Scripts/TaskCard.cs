@@ -18,9 +18,7 @@ public class TaskCard : MonoBehaviour
     [SerializeField] private TMP_Text _turnsCountText;
     //TODO suite color
     [SerializeField] private Image _backCardImage;
-    [SerializeField] private Color _armyColor;
-    [SerializeField] private Color _moneyColor;
-    [SerializeField] private Color _moodColor;
+    [SerializeField] private MinisterColors _colors;
     [SerializeField] private Image _crownImage;
     
     [SerializeField] private Image _winImage;
@@ -70,8 +68,8 @@ public class TaskCard : MonoBehaviour
 
         if (_data.WinPoint)
             _crownImage.gameObject.SetActive(true);
-        
-        SetColor();
+
+        _backCardImage.color = _colors.GetColor(_data.SuiteRequirement);
         GameController.Instance.OnTurnAdvanced.AddListener(TickTimer);
     }
 
@@ -233,23 +231,9 @@ public class TaskCard : MonoBehaviour
     private bool UnfavorableLevelCheck(Minister minister)
     {
         if (minister.Level < _data.LevelRequirement)
-        {
             return false;
-        }
-        else
-        {
-            float chance = 1f / (GameSettings.BaseUnfavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
-            return Random.Range(0, 1f) > chance;
-        }
-    }
-    
-    private void SetColor()
-    {
-        if (_data.SuiteRequirement == MinisterSuite.Army)
-            _backCardImage.color = _armyColor;
-        if (_data.SuiteRequirement == MinisterSuite.Money)
-            _backCardImage.color = _moneyColor;
-        if (_data.SuiteRequirement == MinisterSuite.Mood)
-            _backCardImage.color = _moodColor;
+
+        float chance = 1f / (GameSettings.BaseUnfavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
+        return Random.Range(0, 1f) > chance;
     }
 }

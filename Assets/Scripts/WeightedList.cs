@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class WeightedList<T> where T : class, IWeightedItem
 {
-    private List<T> _list = new List<T>();
+    [SerializeField] private List<T> _list = new List<T>();
     
     public List<T> List => _list;
 

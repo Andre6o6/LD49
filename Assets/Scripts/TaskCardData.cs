@@ -11,11 +11,15 @@ public class TaskCardData : IWeightedItem
     public int TurnsToSolve = 1;
     public System.Action<Minister> CallbackWin;     //arg never null
     public System.Action<Minister> CallbackLose;    //arg may be null
-    public bool DestroyOnFinish;
-    public bool Common = true;    //Doesn't get taken from deck when drawn
-    public bool Important;    //Ignore idle, but dont spawn on top of deck
+    //public bool DestroyOnFinish;
+    //public bool Common = true;
+    //public bool Important;
+
+    public CardDrawMode DrawMode;
+    
     public bool SuperTask;
     public bool WinPoint;
+    
     public float PriorityChange = 1;
     public bool GrowPriorityEveryTurn;
     
@@ -23,9 +27,22 @@ public class TaskCardData : IWeightedItem
 
     public void Dispose()
     {
-        if (Common || DestroyOnFinish || Important)  //Don't return importants  
+        if (DrawMode != CardDrawMode.ReturnToDeck)
             return;
         
         DeckManager.AddCardToDeck(this);
     }
+
+    public void ResetPriority()
+    {
+        Priority = 1;
+    }
+}
+
+public enum CardDrawMode
+{
+    Common,    //Doesn't get taken from deck when drawn
+    ReturnToDeck,
+    DestroyOnFinish,
+    Important,    //Ignores idle and always gets drawn
 }

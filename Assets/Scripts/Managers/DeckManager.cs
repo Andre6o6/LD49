@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class DeckManager : Singleton<DeckManager>
 {
-    private WeightedList<TaskCardData> _globalDeck;
-    private List<TaskCardData> _importantDeck;
+    [SerializeField] private WeightedList<TaskCardData> _globalDeck;
+    [SerializeField] private List<TaskCardData> _importantDeck;
     
     public static void AddCardToDeck(TaskCardData card)
     {
-        if (card.Common && Instance._globalDeck.Contains(card))
+        if (card.DrawMode == CardDrawMode.Common && Instance._globalDeck.Contains(card))
         {
             Instance._globalDeck.UpdatePriority(card, card.PriorityChange);
             Debug.Log($"{card.Name}'s priority set to {card.Priority}");
             return;
         }
 
-        if (card.Important)
+        if (card.DrawMode == CardDrawMode.Important)
         {
             Instance._importantDeck.Add(card);
         }
@@ -31,12 +31,12 @@ public class DeckManager : Singleton<DeckManager>
     {
         if (!Instance._globalDeck.Contains(card)) return;
         
-        if (card.Common)
+        if (card.DrawMode == CardDrawMode.Common)
         {
             Instance._globalDeck.UpdatePriority(card, -card.PriorityChange);
             Debug.Log($"{card.Name}'s priority set to {card.Priority}");
         }
-        else if (!card.Important)
+        else if (card.DrawMode != CardDrawMode.Important)
         {
             Instance._globalDeck.Remove(card);
         }
@@ -69,9 +69,10 @@ public class DeckManager : Singleton<DeckManager>
     public TaskCardData Get()
     {
         var cardData = _globalDeck.GetRandom();
-        if (!cardData.Common)
+        if (cardData.DrawMode != CardDrawMode.Common)
         {
-            _globalDeck.Remove(cardData);    //TODO ???
+            Debug.Log($"{cardData.Name} is removed");
+            _globalDeck.Remove(cardData);
         }
 
         return cardData;

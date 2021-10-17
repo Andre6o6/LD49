@@ -82,8 +82,10 @@
           <e p="TaskCard.cs" t="Include" />
           <e p="TaskCardData.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="MinisterColors.cs" t="Include" />
             <e p="UIMinisterHome.cs" t="Include" />
             <e p="UIMinisterLevel.cs" t="Include" />
+            <e p="UIPortraitDragSize.cs" t="Include" />
             <e p="UIStability.cs" t="Include" />
             <e p="UITurnCounter.cs" t="Include" />
             <e p="UIWinPoints.cs" t="Include" />

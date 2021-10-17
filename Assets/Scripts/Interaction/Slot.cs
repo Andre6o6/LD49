@@ -47,18 +47,22 @@ public class Slot : MonoBehaviour
         return Empty() && !IsClosed;
     }
 
-    public void PutPieceIn(DragablePiece piece)
+    public void PutPieceIn(DragablePiece piece, bool instant = true)
     {
         Piece = piece;
-        PutInOriginalPosition();
+        PutInOriginalPosition(instant);
         
         OnReceivePiece.Invoke();
     }
 
-    public void PutInOriginalPosition()
+    public void PutInOriginalPosition(bool instant = true)
     {
         Piece.transform.SetParent(this.transform);
-        Piece.transform.position = _slotCenter.position;    //TODO animation of movement
+
+        if (instant)
+            Piece.transform.position = _slotCenter.position;    //TODO animation of movement
+        else
+            LeanTween.move(Piece.gameObject, _slotCenter.position, 0.1f);
     }
 
     public void Close()

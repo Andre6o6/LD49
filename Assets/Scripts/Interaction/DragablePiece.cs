@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +6,7 @@ using UnityEngine.UI;
 
 public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [HideInInspector] public UnityEvent OnBeginDragEvent;
     [HideInInspector] public UnityEvent OnMovedToSlotEvent;
     [HideInInspector] public UnityEvent OnCancelMoveEvent;
     [HideInInspector] public UnityEvent OnReturnedHomeEvent;
@@ -46,6 +45,8 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
         transform.SetParent(_canvasTransform);   // Parent ourselves to canvas
         transform.SetAsLastSibling();           // put us at the end to render on top of everything
+        
+        OnBeginDragEvent.Invoke();
     }
     
     public void OnDrag(PointerEventData eventData)
@@ -82,22 +83,20 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
         }
 
-        _currentSlot.PutInOriginalPosition();
+        _currentSlot.PutInOriginalPosition(false);
         OnCancelMoveEvent.Invoke();
     }
 
     public void ReturnHome()
     {
-        PutIntoSlot(_homeSlot);
+        PutIntoSlot(_homeSlot, false);
         OnReturnedHomeEvent.Invoke();
     }
 
-    private void PutIntoSlot(Slot slot)
+    private void PutIntoSlot(Slot slot, bool instant = true)
     {
         _currentSlot?.Clear();
         _currentSlot = slot;
-        slot.PutPieceIn(this);
-        
-        //TODO animation of movement
+        slot.PutPieceIn(this, instant);
     }
 }
