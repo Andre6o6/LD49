@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TaskCard : MonoBehaviour
 {
@@ -139,23 +140,22 @@ public class TaskCard : MonoBehaviour
 
         if (!_slot.Empty())
         {
-            var parent = _levelReqText.transform.parent.gameObject;
+            var parent = _levelReqText.transform.parent;
             var angle = new Vector3(0, 0, 15);
-            var seq = LeanTween.sequence();
-            seq.append(LeanTween.rotate(parent, angle, 0.1f));
-            seq.append(LeanTween.rotate(parent, -angle, 0.1f));
-            seq.append(LeanTween.rotate(parent, angle, 0.1f));
-            seq.append(LeanTween.rotate(parent, Vector3.zero, 0.05f));
+            
+            var seq = DOTween.Sequence();
+            seq.Append(parent.DORotate(angle, 0.1f));
+            seq.Append(parent.DORotate(-angle, 0.1f));
+            seq.Append(parent.DORotate(angle, 0.1f));
+            seq.Append(parent.DORotate(Vector3.zero, 0.05f));
         }
         else
         {
-            var seq = LeanTween.sequence();
-            seq.append(LeanTween.scale(_turnsCountText.gameObject, 1.3f * Vector3.one, 0.2f));
-            seq.append(LeanTween.scale(_turnsCountText.gameObject, Vector3.one, 0.3f));
+            var seq = DOTween.Sequence();
+            seq.Append(_turnsCountText.transform.DOScale(1.3f * Vector3.one, 0.2f))
+                .Append(_turnsCountText.transform.DOScale(Vector3.one, 0.3f));
         }
-
         _loseImage.gameObject.SetActive(true);
-        //TODO graphics
         
         OnTaskFailed.Invoke();
     }
@@ -176,11 +176,11 @@ public class TaskCard : MonoBehaviour
 
         _turnsCountText.text = "";
         
-        var parent = _levelReqText.transform.parent.gameObject;
-        var seq = LeanTween.sequence();
-        seq.append(LeanTween.scale(parent, 1.3f * Vector3.one, 0.2f));
-        seq.append(LeanTween.scale(parent, Vector3.one, 0.3f));
-        
+        var parent = _levelReqText.transform.parent;
+        var seq = DOTween.Sequence();
+        seq.Append(parent.DOScale(1.3f * Vector3.one, 0.2f))
+            .Append(parent.DOScale(Vector3.one, 0.3f));
+
         _winImage.gameObject.SetActive(true);
     }
 

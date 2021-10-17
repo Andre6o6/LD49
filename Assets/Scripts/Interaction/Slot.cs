@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,9 +61,9 @@ public class Slot : MonoBehaviour
         Piece.transform.SetParent(this.transform);
 
         if (instant)
-            Piece.transform.position = _slotCenter.position;    //TODO animation of movement
+            Piece.transform.position = _slotCenter.position;
         else
-            LeanTween.move(Piece.gameObject, _slotCenter.position, 0.1f);
+            Piece.transform.DOMove(_slotCenter.position, 0.1f);
     }
 
     public void Close()

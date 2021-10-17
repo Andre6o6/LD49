@@ -11,9 +11,6 @@ public class TaskCardData : IWeightedItem
     public int TurnsToSolve = 1;
     public System.Action<Minister> CallbackWin;     //arg never null
     public System.Action<Minister> CallbackLose;    //arg may be null
-    //public bool DestroyOnFinish;
-    //public bool Common = true;
-    //public bool Important;
 
     public CardDrawMode DrawMode;
     

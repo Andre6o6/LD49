@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,9 +35,8 @@ public class UIMinisterLevel : MonoBehaviour
         SetLevelText(level);
         
         //Anim
-        var seq = LeanTween.sequence();
-        seq.append(LeanTween.scale(_levelText.gameObject, 1.5f * Vector3.one, 0.2f));
-        seq.append(LeanTween.scale(_levelText.gameObject, Vector3.one, 0.2f));
-        
+        var seq = DOTween.Sequence();
+        seq.Append(_levelText.transform.DOScale(1.5f * Vector3.one, 0.2f))
+            .Append(_levelText.transform.DOScale(Vector3.one, 0.2f));
     }
 }

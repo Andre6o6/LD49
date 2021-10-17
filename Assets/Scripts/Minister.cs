@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,18 +52,35 @@ public class Minister : MonoBehaviour
 
     public void GainExperience(int taskLevel)
     {
+        int levelsGained = 0;
+        
         _currentExp += taskLevel;
-        if (_currentExp >= Level)
+        while (_currentExp >= Level)
         {
             _currentExp -= Level;
             GainLevel();
-
-            //TODO animate bar to fill=1, then to 0
+            levelsGained += 1;
         }
 
         float newFillAmount = (float) _currentExp / Level;
-        LeanTween.value(this.gameObject, fill => _experienceBarImage.fillAmount = fill,
-            _experienceBarImage.fillAmount, newFillAmount, 0.2f);
+        var seq = DOTween.Sequence();
+        for (int i = 0; i < levelsGained; i++)
+        {
+            seq.Append(
+                DOTween.To(
+                    () => _experienceBarImage.fillAmount,
+                    x => _experienceBarImage.fillAmount = x,
+                    1, 
+                    0.5f * (1 - _experienceBarImage.fillAmount))
+                .OnComplete(() => _experienceBarImage.fillAmount = 0)
+            );
+        }
+        seq.Append(
+            DOTween.To(
+                () => _experienceBarImage.fillAmount,
+                x => _experienceBarImage.fillAmount = x,
+                0.5f * (newFillAmount - _experienceBarImage.fillAmount), 0.2f)
+        );
     }
 
     public void GainLevel() 

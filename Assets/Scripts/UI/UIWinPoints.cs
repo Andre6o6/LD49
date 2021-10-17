@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,5 +15,7 @@ public class UIWinPoints : MonoBehaviour
     {
         var icon = Instantiate(_imageTemplate, this.transform);
         icon.gameObject.SetActive(true);
+
+        icon.transform.DOScale(1.5f * Vector3.one, 0.3f).From();
     }
 }
