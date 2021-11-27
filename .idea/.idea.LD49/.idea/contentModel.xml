@@ -54,6 +54,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="ChanceResultPopup.cs" t="Include" />
           <e p="Interaction" t="Include">
             <e p="DragablePiece.cs" t="Include" />
             <e p="Slot.cs" t="Include" />
@@ -76,6 +77,11 @@
           <e p="Province.cs" t="Include" />
           <e p="TaskCard.cs" t="Include" />
           <e p="TaskCardData.cs" t="Include" />
+          <e p="Traits" t="Include">
+            <e p="AllTraits.cs" t="Include" />
+            <e p="Trait.cs" t="Include" />
+            <e p="TraitControlledData.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="MinisterColors.cs" t="Include" />
             <e p="UIMinisterHome.cs" t="Include" />

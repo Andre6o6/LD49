@@ -6,6 +6,9 @@ using DG.Tweening;
 
 public class TaskCard : MonoBehaviour
 {
+    public event System.Action<float> OnChanceFailEvent;
+    public event System.Action<float> OnChanceSuccessEvent;
+    
     public UnityEvent OnCardDestroyed;
     public UnityEvent OnTaskFailed;
 
@@ -133,7 +136,7 @@ public class TaskCard : MonoBehaviour
         EmpireController.ChangeStability(-1);
         
         if (minister != null)
-            minister.ChangeBoredom(-1 - _data.LevelRequirement / GameSettings.ExhaustionLvlDivider);
+            minister.ChangeBoredom(GetExhaustionCost(minister, false));
         
         _destroyNextTurn = true;
         _slot.Close();
@@ -168,7 +171,7 @@ public class TaskCard : MonoBehaviour
         if (minister != null)
         {
             minister.GainExperience(_data.LevelRequirement);
-            minister.ChangeBoredom(-1 - _data.LevelRequirement / GameSettings.ExhaustionLvlDivider);
+            minister.ChangeBoredom(GetExhaustionCost(minister, true));
         }
 
         _destroyNextTurn = true;
@@ -224,7 +227,9 @@ public class TaskCard : MonoBehaviour
         else
         {
             float chance = 1f / (GameSettings.BaseFavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
-            return Random.Range(0, 1f) < chance;
+            bool result = Random.Range(0, 1f) < chance;
+            if (result == true) OnChanceSuccessEvent?.Invoke(chance);
+            return result;
         }
     }
     
@@ -234,6 +239,22 @@ public class TaskCard : MonoBehaviour
             return false;
 
         float chance = 1f / (GameSettings.BaseUnfavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
-        return Random.Range(0, 1f) > chance;
+        bool result = Random.Range(0, 1f) > chance;
+        if (result == false) OnChanceFailEvent?.Invoke(chance);
+        return result;
+    }
+
+    public int GetExhaustionCost(Minister minister, bool succeed = true)
+    {
+        //TODO offset level + 1 if suite mismatch
+        int exh = succeed ? 0 : 1;
+        
+        if (_data.LevelRequirement >= minister.Level)
+            exh += 2;
+        else if (2 * _data.LevelRequirement >= minister.Level)
+            exh += 1;
+
+        Debug.Log(exh);
+        return -exh;
     }
 }

@@ -62,13 +62,11 @@ MonoBehaviour:
   _boredomNumberText: {fileID: 6310460629550797494}
   _boredomDescText: {fileID: 6644326210900295019}
   _backCardImage: {fileID: 1221921019889519822}
-  _armyColor: {r: 0.745283, g: 0.5183852, b: 0.41060874, a: 0.8156863}
-  _moneyColor: {r: 0.49410853, g: 0.6320754, b: 0.4913492, a: 0.8156863}
-  _moodColor: {r: 0.4781417, g: 0.52363235, b: 0.6226415, a: 0.80784315}
   _colors:
     _armyColor: {r: 0.74509805, g: 0.5176471, b: 0.4117647, a: 0.8156863}
     _moneyColor: {r: 0.49411765, g: 0.6313726, b: 0.49019608, a: 0.8156863}
     _moodColor: {r: 0.47843137, g: 0.5254902, b: 0.62352943, a: 0.80784315}
+    _defaultColor: {r: 0, g: 0, b: 0, a: 1}
   _bloodImage: {fileID: 7700702548361126235}
   _deadText: {fileID: 5845873227487426157}
 --- !u!222 &8689325782647922562
@@ -392,8 +390,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bored to death
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19654485a41aab0429edeec918e372f3, type: 2}
+  m_sharedMaterial: {fileID: 9097870576985602621, guid: 19654485a41aab0429edeec918e372f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -526,8 +524,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Counselor
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19654485a41aab0429edeec918e372f3, type: 2}
+  m_sharedMaterial: {fileID: 9097870576985602621, guid: 19654485a41aab0429edeec918e372f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -551,7 +549,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.8
+  m_fontSize: 40.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1220,6 +1218,14 @@ PrefabInstance:
     - target: {fileID: 5518535032183208900, guid: 35cd678c7b6307b4c97bf4e4c00aa351, type: 3}
       propertyPath: _dragPortraitSize.y
       value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518535032183208900, guid: 35cd678c7b6307b4c97bf4e4c00aa351, type: 3}
+      propertyPath: _boredomMaxThreshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518535032183208900, guid: 35cd678c7b6307b4c97bf4e4c00aa351, type: 3}
+      propertyPath: _boredomMinThreshold
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5518535032183208900, guid: 35cd678c7b6307b4c97bf4e4c00aa351, type: 3}
       propertyPath: _portraitRectTransform

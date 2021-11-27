@@ -8,16 +8,21 @@ public class Minister : MonoBehaviour
     public event System.Action<int> OnMinisterLevelUpEvent;
     public event System.Action<int> OnMinisterBoredomChangeEvent;
 
+    public Bio Bio { get; private set; }
+    public TraitControlledData Personality { get; private set; }
+    
     public int Level { get; private set; } = 1;
     public int Boredom { get; private set; }
     public bool CanAct { get; private set; }
     public bool Dead { get; private set; }
-    
+
     public MinisterSuite Suite => _suite;
     
     [SerializeField] private MinisterSuite _suite;
     [SerializeField] private DragablePiece _piece;
     [SerializeField] private Image _experienceBarImage;
+    [SerializeField] private int _boredomMinThreshold = -11;
+    [SerializeField] private int _boredomMaxThreshold = 11;
     private int _currentExp;
     private Color _defaultColor;
 
@@ -98,7 +103,7 @@ public class Minister : MonoBehaviour
     public void ChangeBoredom(int delta)
     {
         Boredom += delta; 
-        Boredom = Mathf.Clamp(Boredom, -11, 11);
+        Boredom = Mathf.Clamp(Boredom, _boredomMinThreshold, _boredomMaxThreshold);
         OnMinisterBoredomChangeEvent?.Invoke(Boredom);
     }
 
@@ -144,7 +149,7 @@ public class Minister : MonoBehaviour
             GetComponentInChildren<Image>().color = _defaultColor;
         }
 
-        if (CanAct && Boredom <= -10) //start recover
+        if (CanAct && Boredom <= _boredomMinThreshold) //start recover
         {
             CanAct = false;
             _defaultColor = GetComponentInChildren<Image>().color;
