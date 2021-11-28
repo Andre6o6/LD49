@@ -11,19 +11,13 @@
     <list default="true" id="84bfb157-de35-4a0a-a9bf-c7847e8c3194" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Fonts/Cambria SDF.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Fonts/Cambria SDF.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Circle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/Circle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MinisterHome.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MinisterHome.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Minister_solo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Minister_solo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TaskCardData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TaskCardData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TaskCardData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Traits/AllTraits.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Traits/Trait.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -67,7 +62,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeightedList.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DeckManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Province.cs" />
@@ -87,6 +81,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Traits/TraitControlledData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Minister.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" />
       </list>
     </option>
   </component>
@@ -149,7 +145,8 @@
       <workItem from="1636479391678" duration="5959000" />
       <workItem from="1636664549447" duration="1402000" />
       <workItem from="1636899654941" duration="2053000" />
-      <workItem from="1638044057141" duration="2176000" />
+      <workItem from="1638044057141" duration="2177000" />
+      <workItem from="1638118600075" duration="8063000" />
     </task>
     <servers />
   </component>

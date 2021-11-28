@@ -82,6 +82,7 @@
             <e p="Trait.cs" t="Include" />
             <e p="TraitControlledData.cs" t="Include" />
           </e>
+          <e p="TutorialSequence.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="MinisterColors.cs" t="Include" />
             <e p="UIMinisterHome.cs" t="Include" />

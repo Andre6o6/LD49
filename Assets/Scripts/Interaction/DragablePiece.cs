@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public static bool CanDrag = true;
+    
     [HideInInspector] public UnityEvent OnBeginDragEvent;
     [HideInInspector] public UnityEvent OnMovedToSlotEvent;
     [HideInInspector] public UnityEvent OnCancelMoveEvent;
@@ -41,6 +43,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!CanDrag) return;
         if (!_minister.CanAct) return;
         
         transform.SetParent(_canvasTransform);   // Parent ourselves to canvas
@@ -51,6 +54,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     public void OnDrag(PointerEventData eventData)
     {
+        if (!CanDrag) return;
         if (!_minister.CanAct) return;
         
         transform.position = eventData.position;
@@ -58,6 +62,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!CanDrag) return;
         if (!_minister.CanAct) return;
         
         List<RaycastResult> results = new List<RaycastResult>();
@@ -70,7 +75,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 if (slot.IsHomeSlot && slot != _homeSlot)
                 {
                     ReturnHome();
-                    OnMovedToSlotEvent.Invoke();
+                    //OnMovedToSlotEvent.Invoke();
                     return;
                 }
 
