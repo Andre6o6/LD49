@@ -26,8 +26,14 @@ public class TutorialSequence : MonoBehaviour
     [SerializeField] private TMP_Text _panel2textBox2;
     [SerializeField] private TMP_Text _panel2textBox3;
     [SerializeField] private GameObject _personalTextPanelRed2;
+    [SerializeField] private GameObject _arrow1;
     [Header("Turns")]
     [SerializeField] private RectTransform _turnsTutorialPanel;
+    [SerializeField] private GameObject _arrow2;
+    [Header("Stamina")]
+    [SerializeField] private RectTransform _staminaTutorialPanel;
+    [SerializeField] private TMP_Text _panel3textBox1;
+    [SerializeField] private TMP_Text _panel3textBox2;
     [Header("Stability")]
     [SerializeField] private RectTransform _stabilityTutorialPanel;
     [SerializeField] private TMP_Text _panel4textBox1;
@@ -45,6 +51,7 @@ public class TutorialSequence : MonoBehaviour
         yield return FirstPanelCoroutine();
         yield return SecondPanelCoroutine();
         yield return ThirdPanelCoroutine();
+        yield return StaminaInterludeCoroutine();
         yield return ForthPanelCoroutine();
         yield return FifthPanelCoroutine();
     }
@@ -67,16 +74,18 @@ public class TutorialSequence : MonoBehaviour
         yield return new WaitForSeconds(2);
         _textBox2.gameObject.SetActive(true);
         
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3f);
+        _stabilityCounter.SetActive(true);
+        yield return new WaitForSeconds(1f);
         ShowProvinces(_provinces, 0.5f);
         
-        yield return new WaitForSeconds(1.5f);
-        PersonalBoxAnimation(_personalTextPanelBlue, 2.5f);
-        yield return new WaitForSeconds(1.5f);
-        PersonalBoxAnimation(_personalTextPanelGreen, 2.5f);
-        yield return new WaitForSeconds(1.5f);
-        PersonalBoxAnimation(_personalTextPanelRed1, 2.5f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
+        PersonalBoxAnimation(_personalTextPanelBlue, 3f);
+        yield return new WaitForSeconds(2f);
+        PersonalBoxAnimation(_personalTextPanelGreen, 3);
+        yield return new WaitForSeconds(2f);
+        PersonalBoxAnimation(_personalTextPanelRed1, 3f);
+        yield return new WaitForSeconds(3.5f);
 
         _textPanel1.transform.DOScale(Vector3.zero, 0.25f)
             .OnComplete(() => _textPanel1.gameObject.SetActive(false));
@@ -89,18 +98,25 @@ public class TutorialSequence : MonoBehaviour
         _taskDragPanel.gameObject.SetActive(true);
         _taskDragPanel.transform.DOScale(Vector3.zero, 0.5f).From();
         
+        yield return new WaitForSeconds(2f);
+        _arrow1.SetActive(true);
+        _arrow1.transform.DOScaleX(0, 0.25f).From();
+        
         //Wait for drag
         while (GameController.Instance.Turn <= 0)
             yield return null;
         
+        _arrow1.transform.DOScaleX(0, 0.15f)
+            .OnComplete(() => _arrow1.SetActive(false));
+        
         _panel2textBox1.gameObject.SetActive(false);
         _panel2textBox2.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4.5f);
         _panel2textBox2.gameObject.SetActive(false);
         _panel2textBox3.gameObject.SetActive(true);
-        yield return new WaitForSeconds(4f);
-        PersonalBoxAnimation(_personalTextPanelRed2, 1.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4.5f);
+        PersonalBoxAnimation(_personalTextPanelRed2, 2f);
+        yield return new WaitForSeconds(2.5f);
         
         _taskDragPanel.transform.DOScale(Vector3.zero, 0.25f)
             .OnComplete(() => _taskDragPanel.gameObject.SetActive(false));
@@ -111,20 +127,53 @@ public class TutorialSequence : MonoBehaviour
         _turnsPanel.SetActive(true);
         _turnsTutorialPanel.gameObject.SetActive(true);
         _turnsTutorialPanel.transform.DOScale(Vector3.zero, 0.5f).From();
+
+        var curTurn = GameController.Instance.Turn;
         
-        yield return new WaitForSeconds(4f);
-        
+        yield return new WaitForSeconds(3f);
+
+        if (GameController.Instance.Turn == curTurn)
+        {
+            _arrow2.SetActive(true);
+            _arrow2.transform.DOScaleX(0, 0.25f).From();
+        }
+
+        while (GameController.Instance.Turn == curTurn)
+            yield return null;
+
+        if (_arrow2.activeInHierarchy)
+        {
+            _arrow2.transform.DOScaleX(0, 0.15f)
+                .OnComplete(() => _arrow2.SetActive(false));
+        }
+
         _turnsTutorialPanel.transform.DOScale(Vector3.zero, 0.25f)
             .OnComplete(() => _turnsTutorialPanel.gameObject.SetActive(false));
     }
     
+    private IEnumerator StaminaInterludeCoroutine()
+    {
+        _staminaTutorialPanel.gameObject.SetActive(true);
+        _staminaTutorialPanel.transform.DOScale(Vector3.zero, 0.5f).From();
+        
+        yield return new WaitForSeconds(4.5f);
+        _panel3textBox1.gameObject.SetActive(false);
+        _panel3textBox2.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        
+        _staminaTutorialPanel.transform.DOScale(Vector3.zero, 0.25f)
+            .OnComplete(() => _staminaTutorialPanel.gameObject.SetActive(false));
+        
+        yield return new WaitForSeconds(1f);
+    }
+    
     private IEnumerator ForthPanelCoroutine()
     {
-        _stabilityCounter.SetActive(true);
+        //_stabilityCounter.SetActive(true);
         _stabilityTutorialPanel.gameObject.SetActive(true);
         _stabilityTutorialPanel.transform.DOScale(Vector3.zero, 0.5f).From();
         
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4.5f);
         _panel4textBox1.gameObject.SetActive(false);
         _panel4textBox2.gameObject.SetActive(true);
         yield return new WaitForSeconds(4f);
@@ -183,7 +232,8 @@ public class TutorialSequence : MonoBehaviour
         foreach (var w in _winPointIcons)
         {
             seq.AppendCallback(() => w.SetActive(true));
-            seq.AppendInterval(timeBetween);
+            seq.Append(w.transform.DOScale(2f * Vector3.one, 0.25f).From());
+            seq.AppendInterval(timeBetween - 0.25f);
         }
     }
 

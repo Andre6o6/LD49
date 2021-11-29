@@ -40,7 +40,7 @@ public class UIMinisterHome : MonoBehaviour
     {
         if (_boredomNumberText != null)
             _boredomNumberText.text = boredom.ToString();
-        _boredomDescText.text = BoredomText(boredom);
+        _boredomDescText.text = _minister.GetBoredomText();
     }
 
     private void OnMinisterDead()
@@ -48,19 +48,5 @@ public class UIMinisterHome : MonoBehaviour
         _bloodImage.gameObject.SetActive(true);
         _deadText.gameObject.SetActive(true);
         this.enabled = false;
-    }
-
-    private string BoredomText(int boredomValue)
-    {
-        if (boredomValue >= 10)
-            return "Bored to death";
-        else if (boredomValue > 5)
-            return "Bored";
-        else if (boredomValue >= -5)
-            return "Rested";
-        else if (boredomValue > -10)
-            return "Tired";
-        else
-            return "Exhausted";
     }
 }

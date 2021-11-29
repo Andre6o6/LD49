@@ -170,6 +170,13 @@ public class Minister : MonoBehaviour
 
         return "";
     }
+
+    public string GetBoredomText()
+    {
+        if (Boredom == _boredomMaxThreshold) return "Bored";
+        if (Boredom == _boredomMinThreshold) return "Exhausted";
+        return  Boredom >= 0 ? "Rested" : "Tired";
+    }
 }
 
 public enum MinisterSuite
