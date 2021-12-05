@@ -9,12 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84bfb157-de35-4a0a-a9bf-c7847e8c3194" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/dagger.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/dagger.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterHome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterHome.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +59,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UITurnCounter.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PortraitManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIStability.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameController.cs" />
@@ -64,9 +67,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Province.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AllGameCards.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPortraitDragSize.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/MinisterColors.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterLevel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/Slot.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIWinPoints.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TaskCardData.cs" />
@@ -75,11 +76,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Traits/Trait.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Traits/AllTraits.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Traits/TraitControlledData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Minister.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterHome.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterLevel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Minister.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" />
       </list>
     </option>
   </component>
@@ -144,7 +149,8 @@
       <workItem from="1636899654941" duration="2053000" />
       <workItem from="1638044057141" duration="2177000" />
       <workItem from="1638118600075" duration="8063000" />
-      <workItem from="1638210520826" duration="4075000" />
+      <workItem from="1638210520826" duration="5098000" />
+      <workItem from="1638724423838" duration="5760000" />
     </task>
     <servers />
   </component>
@@ -177,9 +183,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1633209606671" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1638214666688">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1638737858530">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1638214666688" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1638737858530" />
   </component>
 </project>

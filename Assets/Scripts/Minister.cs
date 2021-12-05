@@ -29,7 +29,7 @@ public class Minister : MonoBehaviour
     private void Awake()
     {
         CanAct = true;
-        
+
         _piece ??= GetComponent<DragablePiece>();
         _piece.OnMovedToSlotEvent.AddListener(TickTurnTimer);
         

@@ -52,7 +52,7 @@ public class TutorialSequence : MonoBehaviour
         yield return SecondPanelCoroutine();
         yield return ThirdPanelCoroutine();
         yield return StaminaInterludeCoroutine();
-        yield return ForthPanelCoroutine();
+        //yield return ForthPanelCoroutine();
         yield return FifthPanelCoroutine();
     }
 
@@ -132,6 +132,7 @@ public class TutorialSequence : MonoBehaviour
         
         yield return new WaitForSeconds(3f);
 
+        //TODO check if can move smone, otherwise highlight "next turn" button
         if (GameController.Instance.Turn == curTurn)
         {
             _arrow2.SetActive(true);

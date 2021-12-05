@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class WinTreaker : MonoBehaviour
@@ -16,6 +15,8 @@ public class WinTreaker : MonoBehaviour
         if (value >= 3)
         {
             _winPopup.SetActive(true);
+            _winPopup.transform.localScale = Vector3.zero;
+            _winPopup.transform.DOScale(Vector3.one, 0.75f);
         }
     }
 }

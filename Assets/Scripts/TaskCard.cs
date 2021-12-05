@@ -136,7 +136,7 @@ public class TaskCard : MonoBehaviour
         EmpireController.ChangeStability(-1);
         
         if (minister != null)
-            minister.ChangeBoredom(GetExhaustionCost(minister, false));
+            minister.ChangeBoredom(GetExhaustionCost(minister, _data, false));
         
         _destroyNextTurn = true;
         _slot.Close();
@@ -171,7 +171,7 @@ public class TaskCard : MonoBehaviour
         if (minister != null)
         {
             minister.GainExperience(_data.LevelRequirement);
-            minister.ChangeBoredom(GetExhaustionCost(minister, true));
+            minister.ChangeBoredom(GetExhaustionCost(minister, _data, true));
         }
 
         _destroyNextTurn = true;
@@ -244,17 +244,20 @@ public class TaskCard : MonoBehaviour
         return result;
     }
 
-    public int GetExhaustionCost(Minister minister, bool succeed = true)
+    public int GetExhaustionCost(Minister minister, TaskCardData task, bool succeed = true)
     {
-        //TODO offset level + 1 if suite mismatch
-        int exh = succeed ? 0 : 1;
-        
-        if (_data.LevelRequirement >= minister.Level)
-            exh += 2;
-        else if (2 * _data.LevelRequirement >= minister.Level)
+        //TODO Long tasks should eat stamina every turn (?)
+
+        int exh = succeed ? 1 : 0; 
+        exh += task.LevelRequirement / 2 - minister.Level / 4;
+
+        if (_data.SuiteRequirement != MinisterSuite.None &&
+            _data.SuiteRequirement != minister.Suite)
             exh += 1;
 
+        if (exh < 0) exh = 0;
+        
         Debug.Log(exh);
-        return -exh;
+        return - exh;
     }
 }

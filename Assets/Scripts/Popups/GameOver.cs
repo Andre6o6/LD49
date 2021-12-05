@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
@@ -14,6 +15,8 @@ public class GameOver : MonoBehaviour
         if (value <= 0)
         {
             _losePopup.SetActive(true);
+            _losePopup.transform.localScale = Vector3.zero;
+            _losePopup.transform.DOScale(Vector3.one, 0.75f);
         }
     }
 }
