@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class TutorialSequence : MonoBehaviour
 {
-    //[SerializeField] private GameObject _worldSidePanel;
+    private const string TutorialPrefsKey = "TutorialShown";
+
+    [SerializeField] private bool _testMode = true;
     [SerializeField] private GameObject _turnsPanel;
     [SerializeField] private GameObject _winPointsCounter;
     [SerializeField] private GameObject _stabilityCounter;
+    [SerializeField] private GameObject _menuButton;
     [Header("Minister Intro")]
     [SerializeField] private RectTransform _ministersSidePanel;
     [SerializeField] private RectTransform _textPanel1;
@@ -40,12 +43,16 @@ public class TutorialSequence : MonoBehaviour
     [SerializeField] private TMP_Text _panel4textBox2;
     [SerializeField] private TMP_Text _panel4textBox3;
     [Header("Next")]
-    [SerializeField] private RectTransform _grayTasksPanel;
+    [SerializeField] private RectTransform _grayTasksPanel1;
+    [SerializeField] private RectTransform _grayTasksPanel2;
+    [SerializeField] private RectTransform _grayTasksPanel3;
     [SerializeField] private Province[] _foreignProvinces;
     [SerializeField] private GameObject[] _winPointIcons;
     
     private IEnumerator Start()
     {
+        if (!_testMode && !ShouldShowTutorial()) yield break;
+
         HideUI();
 
         yield return FirstPanelCoroutine();
@@ -54,6 +61,9 @@ public class TutorialSequence : MonoBehaviour
         yield return StaminaInterludeCoroutine();
         //yield return ForthPanelCoroutine();
         yield return FifthPanelCoroutine();
+
+        _menuButton.SetActive(true);
+        SetTutorialShown(true);
     }
 
     private IEnumerator FirstPanelCoroutine()
@@ -188,16 +198,32 @@ public class TutorialSequence : MonoBehaviour
     
     private IEnumerator FifthPanelCoroutine()
     {
-        _grayTasksPanel.gameObject.SetActive(true);
-        _grayTasksPanel.transform.DOScale(Vector3.zero, 0.5f).From();
+        _grayTasksPanel1.gameObject.SetActive(true);
+        _grayTasksPanel1.transform.DOScale(Vector3.zero, 0.5f).From();
         
         yield return new WaitForSeconds(2f);
+        
         ShowProvinces(_foreignProvinces, 0.5f);
         ShowWinPoints(0.5f);
-        yield return WaitForSecondsOrClick(5f);
         
-        _grayTasksPanel.transform.DOScale(Vector3.zero, 0.25f)
-            .OnComplete(() => _grayTasksPanel.gameObject.SetActive(false));
+        yield return new WaitForSeconds(1.2f);
+        
+        _grayTasksPanel2.gameObject.SetActive(true);
+        _grayTasksPanel2.transform.DOScale(Vector3.zero, 0.5f).From();
+        
+        yield return WaitForSecondsOrClick(3f);
+        
+        _grayTasksPanel3.gameObject.SetActive(true);
+        _grayTasksPanel3.transform.DOScale(Vector3.zero, 0.5f).From();
+        
+        yield return WaitForSecondsOrClick(4f);
+        
+        _grayTasksPanel1.transform.DOScale(Vector3.zero, 0.25f)
+            .OnComplete(() => _grayTasksPanel1.gameObject.SetActive(false));
+        _grayTasksPanel2.transform.DOScale(Vector3.zero, 0.25f)
+            .OnComplete(() => _grayTasksPanel2.gameObject.SetActive(false));
+        _grayTasksPanel3.transform.DOScale(Vector3.zero, 0.25f)
+            .OnComplete(() => _grayTasksPanel3.gameObject.SetActive(false));
     }
 
     private Sequence PersonalBoxAnimation(GameObject panel, float time)
@@ -243,6 +269,7 @@ public class TutorialSequence : MonoBehaviour
         _turnsPanel.SetActive(false);
         _winPointsCounter.SetActive(false);
         _stabilityCounter.SetActive(false);
+        _menuButton.SetActive(false);
         
         foreach (var p in _provinces)
             p.gameObject.SetActive(false);
@@ -260,5 +287,19 @@ public class TutorialSequence : MonoBehaviour
             
             yield return null;
         }
+    }
+
+    public static bool ShouldShowTutorial()
+    {
+        if (!PlayerPrefs.HasKey(TutorialPrefsKey))
+            return false;
+
+        int v = PlayerPrefs.GetInt(TutorialPrefsKey);
+        return v != 1;
+    }
+
+    public static void SetTutorialShown(bool value)
+    {
+        PlayerPrefs.SetInt(TutorialPrefsKey, value == true ? 1 : 0);
     }
 }

@@ -1,26 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private PortraitManager _portraits;
+    [SerializeField] private GameObject _loadingPanel;
 
     public void Play()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadSceneAsync(TutorialSequence.ShouldShowTutorial() ? "TutorialScene" : "Game");
     }
     
     public void ToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadSceneAsync("Menu");
     }
 
     public void Retry()
     {
         _portraits.CachePortraits();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (_loadingPanel != null) 
+            _loadingPanel.SetActive(true);
+        
+        //TODO additively load loading scene
+        
+        SceneManager.LoadSceneAsync("Loading");
     }
     
     public void Quit()

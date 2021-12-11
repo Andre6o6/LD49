@@ -9,6 +9,7 @@ public class KillTreacker : Singleton<KillTreacker>
     [SerializeField] private Image _killerImage;
     [SerializeField] private Image _victimImage;
     [SerializeField] private PortraitManager _portraits;
+
     private string _format;
     
     private void Start()
@@ -19,7 +20,7 @@ public class KillTreacker : Singleton<KillTreacker>
     public void OnMinisterDied(Minister victim, Minister killer)
     {
         _killPopup.SetActive(true);
-        _text.text = string.Format(_format, killer.GetPositionName(), victim.GetPositionName());
+        _text.text = string.Format(_format, killer.GetColoredPositionName(), victim.GetColoredPositionName());
         _killerImage.sprite = _portraits.PortraitForMinister(killer.Suite);
         _victimImage.sprite = _portraits.PortraitForMinister(victim.Suite);
     }

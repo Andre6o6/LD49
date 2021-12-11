@@ -54,11 +54,22 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Ads.cs" t="Include" />
+          <e p="AdsCore.cs" t="Include" />
+          <e p="Audio" t="Include">
+            <e p="AudioEventChannel.cs" t="Include" />
+            <e p="AudioManager.cs" t="Include" />
+            <e p="FadeGameSounds.cs" t="Include" />
+            <e p="PieceSounds.cs" t="Include" />
+            <e p="SoundEmitter.cs" t="Include" />
+            <e p="TaskSounds.cs" t="Include" />
+          </e>
           <e p="ChanceResultPopup.cs" t="Include" />
           <e p="Interaction" t="Include">
             <e p="DragablePiece.cs" t="Include" />
             <e p="Slot.cs" t="Include" />
           </e>
+          <e p="LoadingScene.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="AllGameCards.cs" t="Include" />
             <e p="DeckManager.cs" t="Include" />
@@ -68,6 +79,16 @@
             <e p="PortraitManager.cs" t="Include" />
           </e>
           <e p="Minister.cs" t="Include" />
+          <e p="Pool" t="Include">
+            <e p="ComponentPoolSO.cs" t="Include" />
+            <e p="IFactory.cs" t="Include" />
+            <e p="IPool.cs" t="Include" />
+            <e p="Pool Subclasses" t="Include">
+              <e p="GameobjectPoolSO.cs" t="Include" />
+              <e p="SoundEmitterPoolSo.cs" t="Include" />
+            </e>
+            <e p="PoolSO.cs" t="Include" />
+          </e>
           <e p="Popups" t="Include">
             <e p="GameOver.cs" t="Include" />
             <e p="KillTreacker.cs" t="Include" />
@@ -87,9 +108,11 @@
             <e p="MinisterColors.cs" t="Include" />
             <e p="UIMinisterHome.cs" t="Include" />
             <e p="UIMinisterLevel.cs" t="Include" />
+            <e p="UIMuteToggle.cs" t="Include" />
             <e p="UIPortraitDragSize.cs" t="Include" />
             <e p="UIStability.cs" t="Include" />
             <e p="UITurnCounter.cs" t="Include" />
+            <e p="UITutorialToggle.cs" t="Include" />
             <e p="UIWinPoints.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">

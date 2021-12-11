@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 5518535032183208897}
   - component: {fileID: 5518535032183208900}
   - component: {fileID: 4781292955828263749}
+  - component: {fileID: 5710371038193234856}
   m_Layer: 5
   m_Name: Minister_solo
   m_TagString: Untagged
@@ -557,6 +558,8 @@ MonoBehaviour:
   _suite: 0
   _piece: {fileID: 5518535032183208897}
   _experienceBarImage: {fileID: 5093763833369393774}
+  _boredomMinThreshold: -11
+  _boredomMaxThreshold: 11
 --- !u!114 &4781292955828263749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +576,29 @@ MonoBehaviour:
   _portraitRectTransform: {fileID: 5518535032183208896}
   _fullPortraitSize: {x: 160, y: 160}
   _dragPortraitSize: {x: 110, y: 110}
+--- !u!114 &5710371038193234856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518535032183208767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a63a101e850a754aa9531b048a56101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _piece: {fileID: 5518535032183208897}
+  _channelSo: {fileID: 11400000, guid: c7760532a5e9d3248be2b2b1f66a1483, type: 2}
+  _moveClips:
+  - {fileID: 8300000, guid: a1fadd662cd44ae4299690f6544ed6e4, type: 3}
+  - {fileID: 8300000, guid: 9c4b7c709f52691468cccf0776786edd, type: 3}
+  _returnClips:
+  - {fileID: 8300000, guid: d8782bfcb1db87e4d8d1abbef796f64e, type: 3}
+  _upClips:
+  - {fileID: 8300000, guid: 599fb9511d5172a469630264373f3716, type: 3}
+  _minPitchRange: 0.9
+  _maxPitchRange: 1.2
 --- !u!1 &5630053148459614968
 GameObject:
   m_ObjectHideFlags: 0

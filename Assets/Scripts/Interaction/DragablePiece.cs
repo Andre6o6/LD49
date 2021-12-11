@@ -27,6 +27,8 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     private void Awake()
     {
+        CanDrag = true;
+        
         _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
         _canvasTransform = GetComponentInParent<Canvas>().transform;
         _minister ??= GetComponent<Minister>();

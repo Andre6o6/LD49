@@ -46,6 +46,8 @@ public class Minister : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.A)) ChangeBoredom(+1);
             if (Input.GetKeyDown(KeyCode.S)) EmpireController.ChangeStability(+1);
+            
+            if (Input.GetKeyDown(KeyCode.W) && _piece.IsHome) EmpireController.Instance.AddWinPoint();
         }
     }
 
@@ -59,7 +61,7 @@ public class Minister : MonoBehaviour
     {
         int levelsGained = 0;
         
-        _currentExp += taskLevel;
+        _currentExp += 1 + taskLevel / 2;
         while (_currentExp >= Level)
         {
             _currentExp -= Level;
@@ -67,7 +69,7 @@ public class Minister : MonoBehaviour
             levelsGained += 1;
         }
 
-        float newFillAmount = (float) _currentExp / Level;
+        float newFillAmount = _currentExp / (float)Level;
         var seq = DOTween.Sequence();
         for (int i = 0; i < levelsGained; i++)
         {
@@ -84,7 +86,7 @@ public class Minister : MonoBehaviour
             DOTween.To(
                 () => _experienceBarImage.fillAmount,
                 x => _experienceBarImage.fillAmount = x,
-                0.5f * (newFillAmount - _experienceBarImage.fillAmount), 0.2f)
+                newFillAmount - _experienceBarImage.fillAmount, 0.2f)
         );
     }
 
@@ -167,6 +169,18 @@ public class Minister : MonoBehaviour
             return "Steward";
         if (Suite == MinisterSuite.Mood)
             return "Chancellor";
+
+        return "";
+    }
+    
+    public string GetColoredPositionName()
+    {
+        if (Suite == MinisterSuite.Army)
+            return "<#FF8300>Marshal</color>";
+        if (Suite == MinisterSuite.Money)
+            return "<#00E538>Steward</color>";
+        if (Suite == MinisterSuite.Mood)
+            return "<#60A7E5>Chancellor</color>";
 
         return "";
     }

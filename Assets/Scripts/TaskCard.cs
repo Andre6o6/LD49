@@ -11,6 +11,7 @@ public class TaskCard : MonoBehaviour
     
     public UnityEvent OnCardDestroyed;
     public UnityEvent OnTaskFailed;
+    public UnityEvent OnTaskSuccess;
 
     public MinisterSuite Suite => _data.SuiteRequirement;
     
@@ -185,6 +186,8 @@ public class TaskCard : MonoBehaviour
             .Append(parent.DOScale(Vector3.one, 0.3f));
 
         _winImage.gameObject.SetActive(true);
+        
+        OnTaskSuccess.Invoke();
     }
 
     private void DestroySlot()
@@ -228,7 +231,12 @@ public class TaskCard : MonoBehaviour
         {
             float chance = 1f / (GameSettings.BaseFavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
             bool result = Random.Range(0, 1f) < chance;
-            if (result == true) OnChanceSuccessEvent?.Invoke(chance);
+
+            if (result == true)
+                OnChanceSuccessEvent?.Invoke(chance);
+            else
+                OnChanceFailEvent?.Invoke(1 - chance);
+            
             return result;
         }
     }
@@ -240,7 +248,12 @@ public class TaskCard : MonoBehaviour
 
         float chance = 1f / (GameSettings.BaseUnfavorableChance + Mathf.Abs(_data.LevelRequirement - minister.Level));
         bool result = Random.Range(0, 1f) > chance;
-        if (result == false) OnChanceFailEvent?.Invoke(chance);
+        
+        if (result == false) 
+            OnChanceFailEvent?.Invoke(chance);
+        else
+            OnChanceSuccessEvent?.Invoke(1 - chance);
+        
         return result;
     }
 
@@ -257,7 +270,6 @@ public class TaskCard : MonoBehaviour
 
         if (exh < 0) exh = 0;
         
-        Debug.Log(exh);
         return - exh;
     }
 }
