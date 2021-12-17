@@ -106,6 +106,7 @@
           <e p="TutorialSequence.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="MinisterColors.cs" t="Include" />
+            <e p="UIButtonSound.cs" t="Include" />
             <e p="UIMinisterHome.cs" t="Include" />
             <e p="UIMinisterLevel.cs" t="Include" />
             <e p="UIMuteToggle.cs" t="Include" />

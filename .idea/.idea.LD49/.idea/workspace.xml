@@ -9,38 +9,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84bfb157-de35-4a0a-a9bf-c7847e8c3194" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/SoundEmitter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/SoundEmitter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Pool Subclasses/SoundEmitterPoolSo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Pool Subclasses/SoundEmitterPoolSo.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Sprites/EmojiOne.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Sprites/EmojiOne.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Minister_solo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Minister_solo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Province.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Province.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minister.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/KillTreacker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Scrolled Tiled Texture Shader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Scrolled Tiled Texture Shader.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,6 +104,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadingScene.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AdsCore.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" />
       </list>
     </option>
   </component>
@@ -206,6 +179,7 @@
       <workItem from="1639063655046" duration="600000" />
       <workItem from="1639127076756" duration="6703000" />
       <workItem from="1639214563129" duration="13850000" />
+      <workItem from="1639564959488" duration="969000" />
     </task>
     <servers />
   </component>
