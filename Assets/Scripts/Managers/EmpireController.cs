@@ -9,6 +9,7 @@ public class EmpireController : Singleton<EmpireController>
 {
     public UnityEvent<int> OnStabilityChangedEvent;
     public UnityEvent<int> OnWinPointsChangedEvent;
+    public UnityEvent OnGameWonEvent;
 
     public Minister ArmyMinister;
     public Minister MoneyMinister;
@@ -17,6 +18,9 @@ public class EmpireController : Singleton<EmpireController>
     public int MaxStability = 20;
     private int _stability = 20;
     private int _winPoints;
+
+    public bool GameWon => _winPoints >= GameSettings.MaxWinPoints;
+    public bool GameLost => _stability <= 0;
     
     private List<Minister> _ministers = new List<Minister>();
     
@@ -62,8 +66,12 @@ public class EmpireController : Singleton<EmpireController>
 
     public void AddWinPoint()
     {
+        if (GameWon || GameLost) return;
+        
         _winPoints += 1;
         OnWinPointsChangedEvent.Invoke(_winPoints);
+
+        if (GameWon) OnGameWonEvent.Invoke();
     }
 
     public Minister GetMaxLevelMinister()

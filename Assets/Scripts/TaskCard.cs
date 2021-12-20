@@ -261,15 +261,15 @@ public class TaskCard : MonoBehaviour
     {
         //TODO Long tasks should eat stamina every turn (?)
 
-        int exh = succeed ? 1 : 0; 
-        exh += task.LevelRequirement / 2 - minister.Level / 4;
+        int exh = task.LevelRequirement / 2 - minister.Level / 4;
 
         if (_data.SuiteRequirement != MinisterSuite.None &&
             _data.SuiteRequirement != minister.Suite)
             exh += 1;
 
         if (exh < 0) exh = 0;
+        if (succeed) exh += 1;    //at least 1 exh on success
         
-        return - exh;
+        return -exh;
     }
 }

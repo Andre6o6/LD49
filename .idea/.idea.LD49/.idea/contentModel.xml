@@ -65,6 +65,7 @@
             <e p="TaskSounds.cs" t="Include" />
           </e>
           <e p="ChanceResultPopup.cs" t="Include" />
+          <e p="CreditsScreen.cs" t="Include" />
           <e p="Interaction" t="Include">
             <e p="DragablePiece.cs" t="Include" />
             <e p="Slot.cs" t="Include" />
@@ -116,6 +117,8 @@
             <e p="UITutorialToggle.cs" t="Include" />
             <e p="UIWinPoints.cs" t="Include" />
           </e>
+          <e p="UIOpenLink.cs" t="Include" />
+          <e p="UIVanish.cs" t="Include" />
           <e p="Utils" t="Include">
             <e p="Singleton.cs" t="Include" />
           </e>

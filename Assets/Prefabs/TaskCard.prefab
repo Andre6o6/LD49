@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 5883550748785801474}
   - component: {fileID: 3015108336471341472}
   - component: {fileID: 5776816579672543513}
+  - component: {fileID: 5907458009859605252}
   m_Layer: 5
   m_Name: TaskCard
   m_TagString: Untagged
@@ -898,6 +899,31 @@ MonoBehaviour:
   _minPitchRange: 0.8
   _maxPitchRange: 1.2
   _skipSpawnSound: 0
+--- !u!114 &5907458009859605252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883550748785801500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b986e7835e742428f5ad2134ddb1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _images:
+  - {fileID: 5883550748785801473}
+  - {fileID: 1556834498891541492}
+  - {fileID: 9021017943690120248}
+  - {fileID: 3347676946342736776}
+  - {fileID: 2296841426211598567}
+  _texts:
+  - {fileID: 7796951493594121082}
+  - {fileID: 3005702056966837392}
+  - {fileID: 8403171681923446556}
+  - {fileID: 2833954317399745746}
+  _minTime: 0
+  _maxTime: 1.2
 --- !u!1 &8186436101262294125
 GameObject:
   m_ObjectHideFlags: 0

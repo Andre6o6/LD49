@@ -6,5 +6,7 @@ public static class GameSettings
     public const int ChainEventPriorityGrowth = 6;
     public const int ChainFinalEventPriorityGrowth = 3;
 
+    public const int MaxWinPoints = 3;
+
     public static bool MuteSounds;
 }

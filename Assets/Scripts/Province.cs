@@ -35,6 +35,11 @@ public class Province : MonoBehaviour
 
     private void OnNewTurn()
     {
+        if (EmpireController.Instance.GameWon)    //Not spawn tasks when won
+        {
+            return;
+        }
+
         if (_currentIdleTime > 0)
             _currentIdleTime -= 1;
         

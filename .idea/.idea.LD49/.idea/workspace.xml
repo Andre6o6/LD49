@@ -12,7 +12,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/Cambria SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd Party/TextMesh Pro/Resources/Fonts &amp; Materials/OldLondon SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TaskCard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TutorialScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TutorialScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Province.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Province.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +52,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/DeckManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PortraitManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ChanceResultPopup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIVanish.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIWinPoints.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AdsCore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/AllGameCards.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +63,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MinisterColors.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoadingScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIOpenLink.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeightedList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIMinisterLevel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/PieceSounds.cs" root0="FORCE_HIGHLIGHTING" />
@@ -62,11 +77,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UITurnCounter.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PortraitManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIStability.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeightedList.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DeckManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Province.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AllGameCards.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPortraitDragSize.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/MinisterColors.cs" />
@@ -92,19 +105,24 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/DragablePiece.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Popups/GameOver.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/FadeGameSounds.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMuteToggle.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/TaskSounds.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UITutorialToggle.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Minister.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TutorialSequence.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadingScene.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AdsCore.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TaskCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Province.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UIVanish.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/EmpireController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/WinTreaker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Popups/Menu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UIOpenLink.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CreditsScreen.cs" />
       </list>
     </option>
   </component>
@@ -180,6 +198,9 @@
       <workItem from="1639127076756" duration="6703000" />
       <workItem from="1639214563129" duration="13850000" />
       <workItem from="1639564959488" duration="969000" />
+      <workItem from="1639763604249" duration="1941000" />
+      <workItem from="1639841893543" duration="3318000" />
+      <workItem from="1639923754052" duration="4924000" />
     </task>
     <servers />
   </component>
@@ -212,9 +233,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1633209606671" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639233826730">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639941601155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1639233826730" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1639941601155" />
   </component>
 </project>
