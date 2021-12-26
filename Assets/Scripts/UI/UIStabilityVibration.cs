@@ -4,6 +4,7 @@ using UnityEngine;
 public class UIStabilityVibration : MonoBehaviour
 {
     private static bool _frameFlag;    //One vibration call per frame
+    private static bool _frameFlagLose;
     
     [SerializeField] private EmpireController _empire;
     [SerializeField, Min(0)] private int _msTimeOnHit = 100;
@@ -17,18 +18,28 @@ public class UIStabilityVibration : MonoBehaviour
 
     private void VibrateOnHit(int value, int delta)
     {
-        if (_frameFlag || delta >= 0) return;
+        if (delta >= 0) return;
+        
+        if (value == 0 && !_frameFlagLose)
+        {
+            _frameFlagLose = true;
+            StartCoroutine(VibrateCoroutine(true));
+        }
 
-        int length = value > 0 ? _msTimeOnHit : _msTimeOnDeath;
-        StartCoroutine(VibrateCoroutine(length));
+        if (value > 0 && !_frameFlag) StartCoroutine(VibrateCoroutine());
     }
 
-    private IEnumerator VibrateCoroutine(int length)
+    private IEnumerator VibrateCoroutine(bool lose=false)
     {
         _frameFlag = true;
+
+        if (lose) yield return new WaitForSeconds(0.001f * _msTimeOnHit + 0.1f);
+        
+        int length = lose ? _msTimeOnDeath : _msTimeOnHit;
         Vibration.Vibrate(length);
         
         yield return null;
         _frameFlag = false;
+        _frameFlagLose = false;
     }
 }

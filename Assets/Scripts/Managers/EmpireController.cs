@@ -32,6 +32,8 @@ public class EmpireController : Singleton<EmpireController>
     protected override void Awake()
     {
         base.Awake();
+        
+        Vibration.Init();    //TODO better place?
 
         _stability = MaxStability;
         _ministers = new List<Minister>();

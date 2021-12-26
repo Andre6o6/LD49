@@ -9,4 +9,5 @@ public static class GameSettings
     public const int MaxWinPoints = 3;
 
     public static bool MuteSounds;
+    public static bool MuteVibrations;
 }

@@ -2855,7 +2855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _empire: {fileID: 517818386}
   _msTimeOnHit: 100
-  _msTimeOnDeath: 500
+  _msTimeOnDeath: 1000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

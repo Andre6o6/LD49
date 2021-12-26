@@ -69,6 +69,8 @@ public static class Vibration
         initialized = true;
     }
 
+    public static void SetActive(bool value) => initialized = value;
+
     ///<summary>
     /// Tiny pop vibration
     ///</summary>
@@ -117,7 +119,8 @@ public static class Vibration
     ///</summary>
     public static void Vibrate ( long milliseconds )
     {
-
+        if (!initialized) return;
+        
         if ( Application.isMobilePlatform ) {
 #if !UNITY_WEBGL
 #if UNITY_ANDROID
@@ -144,6 +147,8 @@ public static class Vibration
     ///</summary>
     public static void Vibrate ( long[] pattern, int repeat )
     {
+        if (!initialized) return;
+        
         if ( Application.isMobilePlatform ) {
 #if UNITY_ANDROID
 

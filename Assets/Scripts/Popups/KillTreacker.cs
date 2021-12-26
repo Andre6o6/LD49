@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,5 +24,13 @@ public class KillTreacker : Singleton<KillTreacker>
         _text.text = string.Format(_format, killer.GetColoredPositionName(), victim.GetColoredPositionName());
         _killerImage.sprite = _portraits.PortraitForMinister(killer.Suite);
         _victimImage.sprite = _portraits.PortraitForMinister(victim.Suite);
+
+        StartCoroutine(VibrateCoroutine());
+    }
+
+    private IEnumerator VibrateCoroutine()
+    {
+        yield return new WaitForSeconds(0.11f);    //100 ms of Fail vibrations / ~0.1s offset on audio clip
+        Vibration.Vibrate(new long[]{0, 500, 500, 100}, -1);
     }
 }
