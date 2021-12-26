@@ -25,6 +25,7 @@ public class Minister : MonoBehaviour
     [SerializeField] private int _boredomMaxThreshold = 11;
     private int _currentExp;
     private Color _defaultColor;
+    private bool _exhausted;
 
     private void Awake()
     {
@@ -106,6 +107,9 @@ public class Minister : MonoBehaviour
     {
         Boredom += delta; 
         Boredom = Mathf.Clamp(Boredom, _boredomMinThreshold, _boredomMaxThreshold);
+        
+        if (CanAct && Boredom <= _boredomMinThreshold) GetExhausted();
+        
         OnMinisterBoredomChangeEvent?.Invoke(Boredom);
     }
 
@@ -149,16 +153,23 @@ public class Minister : MonoBehaviour
         {
             CanAct = true;
             GetComponentInChildren<Image>().color = _defaultColor;
+            _exhausted = false;
         }
 
-        if (CanAct && Boredom <= _boredomMinThreshold) //start recover
+        if (CanAct && Boredom <= _boredomMinThreshold) //start recover, TODO not needed here
         {
-            CanAct = false;
-            _defaultColor = GetComponentInChildren<Image>().color;
-            GetComponentInChildren<Image>().color  = Color.black;
+            GetExhausted();
         }
 
         if (CanAct) TryKill();    //TODO trait maybe?
+    }
+
+    private void GetExhausted()
+    {
+        CanAct = false;
+        _defaultColor = GetComponentInChildren<Image>().color;
+        GetComponentInChildren<Image>().color  = Color.black;
+        _exhausted = true;
     }
 
     public string GetPositionName()
@@ -187,8 +198,10 @@ public class Minister : MonoBehaviour
 
     public string GetBoredomText()
     {
+        if (_exhausted && Boredom < 0) return "<b>EXHAUSTED</b>";    //Recovering
+        
         if (Boredom == _boredomMaxThreshold) return "Bored";
-        if (Boredom == _boredomMinThreshold) return "Exhausted";
+        if (Boredom == _boredomMinThreshold) return "<b>EXHAUSTED</b>";
         return  Boredom >= 0 ? "Rested" : "Tired";
     }
 }

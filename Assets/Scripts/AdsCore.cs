@@ -3,6 +3,8 @@ using UnityEngine.Advertisements;
 
 public class AdsCore : MonoBehaviour
 {
+    public static bool BannerShown { get; private set; }
+
     private static bool _isInitialized;
     private static string _gameId = "4500891";
     private static string _banner = "Banner_Android";
@@ -27,6 +29,7 @@ public class AdsCore : MonoBehaviour
         if (!_isInitialized) return;
         
         Advertisement.Banner.Show(_banner);
+        BannerShown = true;
     }
 
     public static void HideBanner()
@@ -34,5 +37,6 @@ public class AdsCore : MonoBehaviour
         if (!_isInitialized) return;
         
         Advertisement.Banner.Hide();
+        BannerShown = false;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class EmpireController : Singleton<EmpireController>
 {
-    public UnityEvent<int> OnStabilityChangedEvent;
+    public UnityEvent<int, int> OnStabilityChangedEvent;
     public UnityEvent<int> OnWinPointsChangedEvent;
     public UnityEvent OnGameWonEvent;
 
@@ -88,6 +88,6 @@ public class EmpireController : Singleton<EmpireController>
     {
         _stability += delta;
         _stability = Mathf.Clamp(_stability, 0, MaxStability);
-        OnStabilityChangedEvent.Invoke(_stability);
+        OnStabilityChangedEvent.Invoke(_stability, delta);
     }
 }

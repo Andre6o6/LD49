@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
          EmpireController.Instance.OnStabilityChangedEvent.AddListener(OnStabilityFall);
     }
 
-    private void OnStabilityFall(int value)
+    private void OnStabilityFall(int value, int delta)
     {
         if (value <= 0)
         {

@@ -16,7 +16,7 @@ public class UIStability : MonoBehaviour
         _empire.OnStabilityChangedEvent.AddListener(OnStabilityChange);
     }
 
-    private void OnStabilityChange(int value)
+    private void OnStabilityChange(int value, int delta)
     {
         _stabilityText.text = value.ToString();
         _stabilitySlider.value = value;

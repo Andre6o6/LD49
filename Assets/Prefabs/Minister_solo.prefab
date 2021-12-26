@@ -507,7 +507,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 110, y: 110}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5518535032183208899
 CanvasRenderer:
@@ -575,7 +575,7 @@ MonoBehaviour:
   _piece: {fileID: 5518535032183208897}
   _portraitRectTransform: {fileID: 5518535032183208896}
   _fullPortraitSize: {x: 160, y: 160}
-  _dragPortraitSize: {x: 110, y: 110}
+  _dragPortraitSize: {x: 150, y: 150}
 --- !u!114 &5710371038193234856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_SizeDelta: {x: -30, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8053747441690804236
 CanvasRenderer:

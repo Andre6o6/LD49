@@ -52,6 +52,12 @@
               <e p="EmojiOne.json" t="Include" />
             </e>
           </e>
+          <e p="Vibration" t="Include">
+            <e p="Example" t="Include">
+              <e p="VibrationExample.cs" t="Include" />
+            </e>
+            <e p="Vibration.cs" t="Include" />
+          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="Ads.cs" t="Include" />
@@ -67,6 +73,7 @@
           <e p="ChanceResultPopup.cs" t="Include" />
           <e p="CreditsScreen.cs" t="Include" />
           <e p="Interaction" t="Include">
+            <e p="CardToPieceDragger.cs" t="Include" />
             <e p="DragablePiece.cs" t="Include" />
             <e p="Slot.cs" t="Include" />
           </e>
@@ -113,6 +120,7 @@
             <e p="UIMuteToggle.cs" t="Include" />
             <e p="UIPortraitDragSize.cs" t="Include" />
             <e p="UIStability.cs" t="Include" />
+            <e p="UIStabilityVibration.cs" t="Include" />
             <e p="UITurnCounter.cs" t="Include" />
             <e p="UITutorialToggle.cs" t="Include" />
             <e p="UIWinPoints.cs" t="Include" />

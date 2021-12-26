@@ -2730,6 +2730,7 @@ GameObject:
   - component: {fileID: 517818387}
   - component: {fileID: 517818388}
   - component: {fileID: 517818389}
+  - component: {fileID: 517818390}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2840,6 +2841,21 @@ MonoBehaviour:
   _channelSo: {fileID: 11400000, guid: c7760532a5e9d3248be2b2b1f66a1483, type: 2}
   _soundEmitterPrefab: {fileID: 1999428793020195107, guid: dbd81cdae2189c745ba0babfe6ceabc2, type: 3}
   _prewarmCount: 5
+--- !u!114 &517818390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517818383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254aecdc15003924bb012498ee389b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _empire: {fileID: 517818386}
+  _msTimeOnHit: 100
+  _msTimeOnDeath: 500
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,6 +3685,10 @@ PrefabInstance:
     - target: {fileID: 3985725524987534662, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883550748687003247, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 103.99992
       objectReference: {fileID: 0}
     - target: {fileID: 5883550748785801473, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
       propertyPath: m_Sprite
@@ -9275,6 +9295,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5883550748687003247, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 103.99992
+      objectReference: {fileID: 0}
     - target: {fileID: 5883550748785801473, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -10096,6 +10120,10 @@ PrefabInstance:
     - target: {fileID: 3015108336471341472, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
       propertyPath: _supercardNumber
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883550748687003247, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 5883550748785801473, guid: 15f23f90afdee3d4995de9c82931dd5e, type: 3}
       propertyPath: m_Sprite

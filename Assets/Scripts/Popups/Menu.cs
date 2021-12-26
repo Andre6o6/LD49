@@ -39,8 +39,7 @@ public class Menu : MonoBehaviour
         if (_loadingPanel != null) 
             _loadingPanel.SetActive(true);
         
-        //TODO additively load loading scene
-        
+        AdsCore.ShowBanner();    //Show banner early for it to init on time
         SceneManager.LoadSceneAsync("Loading");
     }
     
