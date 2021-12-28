@@ -118,6 +118,7 @@
             <e p="UIMinisterHome.cs" t="Include" />
             <e p="UIMinisterLevel.cs" t="Include" />
             <e p="UIMuteToggle.cs" t="Include" />
+            <e p="UIMuteVibrationsToggle.cs" t="Include" />
             <e p="UIPortraitDragSize.cs" t="Include" />
             <e p="UIStability.cs" t="Include" />
             <e p="UIStabilityVibration.cs" t="Include" />
