@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIButtonSound : MonoBehaviour, IPointerEnterHandler
+public class UIButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField] private AudioClip _onPointerAudioClip;
     [SerializeField] private AudioClip _onClickAudioClip;
@@ -22,9 +23,9 @@ public class UIButtonSound : MonoBehaviour, IPointerEnterHandler
             _source.PlayOneShot(_onPointerAudioClip);
     }
 
-    public void OnClick()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (_onClickAudioClip != null)
-            _source.PlayOneShot(_onClickAudioClip);
+        if (GameSettings.MuteSounds) return;    //For mute toggle
+        if (_onClickAudioClip != null) _source.PlayOneShot(_onClickAudioClip);
     }
 }

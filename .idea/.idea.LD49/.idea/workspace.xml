@@ -9,16 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84bfb157-de35-4a0a-a9bf-c7847e8c3194" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/F.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/F.mp3.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Icon.psd" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/Icon.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Icon2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/Icon2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GUI.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TutorialScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TutorialScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
@@ -202,7 +195,8 @@
       <workItem from="1640345821055" duration="255000" />
       <workItem from="1640436018662" duration="3289000" />
       <workItem from="1640539516026" duration="4686000" />
-      <workItem from="1640697492033" duration="2725000" />
+      <workItem from="1640697492033" duration="3319000" />
+      <workItem from="1640709136231" duration="2007000" />
     </task>
     <servers />
   </component>
