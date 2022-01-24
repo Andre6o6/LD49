@@ -21,7 +21,8 @@ public class AdsCore : MonoBehaviour
         Advertisement.Initialize(_gameId, _testMode);
         _isInitialized = true;
         
-        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        //Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_RIGHT);
     }
 
     public static void ShowBanner()

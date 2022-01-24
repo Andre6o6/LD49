@@ -10,10 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="84bfb157-de35-4a0a-a9bf-c7847e8c3194" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIButtonSound.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,6 +193,7 @@
       <workItem from="1640539516026" duration="4686000" />
       <workItem from="1640697492033" duration="3319000" />
       <workItem from="1640709136231" duration="2007000" />
+      <workItem from="1643040083363" duration="606000" />
     </task>
     <servers />
   </component>

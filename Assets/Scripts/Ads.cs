@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ads : MonoBehaviour
 {
     private void Awake()
     {
-        
+        AdsCore.ShowBanner();
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        
+        AdsCore.HideBanner();
     }
 }

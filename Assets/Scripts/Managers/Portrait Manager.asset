@@ -13,10 +13,32 @@ MonoBehaviour:
   m_Name: Portrait Manager
   m_EditorClassIdentifier: 
   Portraits:
+  - {fileID: 21300000, guid: 18de35081ccb5824e80cb5e5d8271751, type: 3}
+  - {fileID: 21300000, guid: 48f48aa6906403b41a4de3494f3ae0ca, type: 3}
+  - {fileID: 21300000, guid: 8b36d54bb5bbcea4fbf77e4457541c11, type: 3}
+  - {fileID: 21300000, guid: 1c625cc35334aa5449b035d72bacbca9, type: 3}
+  - {fileID: 21300000, guid: 59cf3076583756e47877d3d207c90b1b, type: 3}
+  - {fileID: 21300000, guid: fa1ce586dacf34a42b7cc721e95cfd28, type: 3}
+  - {fileID: 21300000, guid: c45186bfbffd82242be0d4b1f7c43650, type: 3}
+  - {fileID: 21300000, guid: 9c565ce37757741458e1e9a925e6e935, type: 3}
+  - {fileID: 21300000, guid: a74ef72432ff22e429af7a67fde7211c, type: 3}
+  - {fileID: 21300000, guid: 21e7637a4552eb04c82de735f6ad9aec, type: 3}
   - {fileID: 21300000, guid: 9b39abd08a2108f44922bcff100712f8, type: 3}
+  - {fileID: 21300000, guid: 5d78de73f7b3f844f9caa0fc66772a0e, type: 3}
+  - {fileID: 21300000, guid: 4647a205cbe76464d859daffc911a02d, type: 3}
   - {fileID: 21300000, guid: a6f222587b712844c8f42c7cabc40890, type: 3}
+  - {fileID: 21300000, guid: e8433be7ce0c3074d80706ee8403c4c1, type: 3}
+  - {fileID: 21300000, guid: 578419ef5011ef74fa6168873ad3dba5, type: 3}
   - {fileID: 21300000, guid: 71ee865cbd0d73e4a8032cc7550e07c8, type: 3}
+  - {fileID: 21300000, guid: db98d4b32225f3c419b3b0bd5d96dd2d, type: 3}
+  - {fileID: 21300000, guid: c4430cea30d5ca4439319ca5a0ab95ac, type: 3}
+  - {fileID: 21300000, guid: 303fe6b7b7a439745a6980ce93f819e4, type: 3}
+  - {fileID: 21300000, guid: dbe1c1cff25ddef4abcf97d262a74ee7, type: 3}
   - {fileID: 21300000, guid: c5befd8a97f84da4fb7efb1b41a55d65, type: 3}
+  - {fileID: 21300000, guid: 6731f76566eb25d429871092512578c3, type: 3}
+  - {fileID: 21300000, guid: c39c99a340f96014c9be8e5ab49a1ec5, type: 3}
+  - {fileID: 21300000, guid: 6026e1b17d43e8d4aa14786b2b81d88e, type: 3}
+  - {fileID: 21300000, guid: 49ec776badef3ea419fee5050757d4f5, type: 3}
   - {fileID: 21300000, guid: 838b55b147fa92f4aa70b256a5e08830, type: 3}
   - {fileID: 21300000, guid: a0c3751f4945e6749819a37069444655, type: 3}
   - {fileID: 21300000, guid: 06b36be54e0398c4bbdc6c145d4bee19, type: 3}
