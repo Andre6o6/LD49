@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class AllGameCards
 {
     //Army
@@ -30,13 +32,13 @@ public class AllGameCards
         {
             if (minister != null)
             {
-                minister.ChangeBoredom(-5);
+                minister.ChangeBoredom(-10);
             }
         },
         CallbackWin = (minister) =>
         {
-            minister.ChangeBoredom(-5);
-            minister.GainLevel();
+            minister.ChangeBoredom(-2);
+            if (minister.Level < 5) minister.GainLevel();
         },
         LevelRequirement = 5,
     };
@@ -47,10 +49,15 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToDeck(Revolt2);
+            DeckManager.AddCardToDeck(Revolt);
         },
         CallbackWin = (_) =>
         {
+            if (Random.value < 0.5f)
+            {
+                DeckManager.RemoveCardFromDeck(Revolt);
+                DeckManager.AddCardToDeck(Revolt2);
+            }
         },
         LevelRequirement = 1,
     };
@@ -64,7 +71,7 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
-        {},
+        { },
         LevelRequirement = 1,
         DrawMode = CardDrawMode.Important,
     };
@@ -75,11 +82,18 @@ public class AllGameCards
         TurnsToSolve = 2,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToDeck(Revolt3);
+            DeckManager.AddCardToDeck(Revolt);
+            DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
-        {},
-        LevelRequirement = 2,
+        {
+            if (Random.value < 0.5f)
+            {
+                DeckManager.RemoveCardFromDeck(Revolt2);
+                DeckManager.AddCardToDeck(Revolt3);
+            }
+        },
+        LevelRequirement = 3,
         DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData Revolt3 = new TaskCardData()
@@ -88,12 +102,35 @@ public class AllGameCards
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
-        {},
-        CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Revolt2);
+            DeckManager.AddCardToDeck(Revolt3);
+            DeckManager.AddCardToDeck(Revolt4Important);
         },
-        LevelRequirement = 4,
+        CallbackWin = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Revolt);
+            DeckManager.RemoveCardFromDeck(Revolt2);
+        },
+        LevelRequirement = 5,
+        DrawMode = CardDrawMode.ReturnToDeck,
+    };
+    public static TaskCardData Revolt4Important = new TaskCardData()
+    {
+        Name = "Revolt",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(Revolt3);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Revolt);
+            DeckManager.RemoveCardFromDeck(Revolt2);
+            DeckManager.RemoveCardFromDeck(Revolt3);
+        },
+        LevelRequirement = 6,
         DrawMode = CardDrawMode.Important,
     };
     public static readonly TaskCardData Raid = new TaskCardData()
@@ -132,6 +169,19 @@ public class AllGameCards
         LevelRequirement = 2,
         DrawMode = CardDrawMode.ReturnToDeck,
     };
+    public static readonly TaskCardData RoadBandits2 = new TaskCardData()
+    {
+        Name = "Road bandits",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+            { },
+        CallbackWin = (_) =>
+        {
+        },
+        LevelRequirement = 4,
+        DrawMode = CardDrawMode.ReturnToDeck,
+    };
     public static readonly TaskCardData RogueMercenaries = new TaskCardData()
     {
         Name = "Rogue mercenaries",
@@ -139,7 +189,7 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToDeck(RoadBandits);
+            DeckManager.AddCardToDeck(RoadBandits2);
         },
         CallbackWin = (_) =>
         { },
@@ -170,11 +220,11 @@ public class AllGameCards
         SuiteRequirement = MinisterSuite.Money,
         TurnsToSolve = 2,
         CallbackLose = (minister) =>
+        { },
+        CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(TaxEvaders);
         },
-        CallbackWin = (_) =>
-        { },
         LevelRequirement = 1,
     };
     public static readonly TaskCardData TaxEvaders = new TaskCardData()
@@ -188,9 +238,25 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
-        { },
-        DrawMode = CardDrawMode.DestroyOnFinish,
+        {
+            if (Random.value < 0.5f) DeckManager.AddCardToDeck(TaxEvaders2);
+        },
+        DrawMode = CardDrawMode.ReturnToDeck,
         LevelRequirement = 3,
+    };
+    public static readonly TaskCardData TaxEvaders2 = new TaskCardData()
+    {
+        Name = "Tax evaders",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 2,
+        CallbackLose = (minister) =>
+        {
+            DeckManager.AddCardToDeck(TaxEvaders2);
+            DeckManager.AddCardToDeck(Revolt3);
+        },
+        CallbackWin = (_) => { },
+        DrawMode = CardDrawMode.DestroyOnFinish,
+        LevelRequirement = 5,
     };
     public static readonly TaskCardData TradeRoute = new TaskCardData()
     {
@@ -211,7 +277,7 @@ public class AllGameCards
     {
         Name = "Shady trade deal",
         SuiteRequirement = MinisterSuite.Money,
-        TurnsToSolve = 3,
+        TurnsToSolve = 4,
         CallbackLose = (minister) =>
         { },
         CallbackWin = (_) =>
@@ -240,7 +306,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(RogueMercenaries);
         },
         CallbackWin = (_) =>
-        { },
+        {
+            if (Random.value < 0.5f) DeckManager.AddCardToDeck(RogueMercenaries);
+        },
         LevelRequirement = 4,
     };
     public static readonly TaskCardData BuyCropsFamine = new TaskCardData()
@@ -251,11 +319,31 @@ public class AllGameCards
         CallbackLose = (_) =>
         {
             DeckManager.AddCardToDeck(Hunger);
-            DeckManager.AddCardToDeck(Famine);
+            DeckManager.AddCardToDeck(BigFamine);
         },
         CallbackWin = (_) =>
-        { },
+        {
+            DeckManager.RemoveCardFromDeck(Famine);
+            if (Random.value < 0.25f) DeckManager.RemoveCardFromDeck(Famine2);
+        },
         LevelRequirement = 3,
+        DrawMode = CardDrawMode.Important,
+    };
+    public static readonly TaskCardData BuyCropsFamine2 = new TaskCardData()
+    {
+        Name = "Import more crops",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 5,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(Famine);
+            DeckManager.AddCardToDeck(BigFamine2);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Famine2);
+        },
+        LevelRequirement = 5,
         DrawMode = CardDrawMode.Important,
     };
     //TODO Smugglers
@@ -272,7 +360,9 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Revolt);
         },
         CallbackWin = (_) =>
-        { },
+        {
+            if (Random.value < 0.5f) DeckManager.AddCardToDeck(Famine);
+        },
         LevelRequirement = 1,
     };
     public static readonly TaskCardData Famine = new TaskCardData()
@@ -288,9 +378,29 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(BuyCropsFamine);
+            if (Random.value < 0.5f) DeckManager.AddCardToDeck(Famine2);
+            if (Random.value < 0.25f) DeckManager.AddCardToDeck(BigFamine);
         },
         DrawMode = CardDrawMode.DestroyOnFinish,
         LevelRequirement = 3,
+    };
+    public static readonly TaskCardData Famine2 = new TaskCardData()
+    {
+        Name = "Famine",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Hunger);
+            DeckManager.AddCardToDeck(Famine2);
+            DeckManager.AddCardToDeck(BigFamine);
+        },
+        CallbackWin = (_) =>
+        {
+            if (Random.value < 0.25f) DeckManager.AddCardToDeck(BigFamine);
+        },
+        DrawMode = CardDrawMode.ReturnToDeck,
+        LevelRequirement = 4,
     };
     public static readonly TaskCardData BigFamine = new TaskCardData()
     {
@@ -301,13 +411,34 @@ public class AllGameCards
         {
             DeckManager.AddCardToDeck(Revolt3);
             DeckManager.AddCardToDeck(Famine);
+            DeckManager.AddCardToDeck(Famine2);
         },
         CallbackWin = (_) =>
         {
-            DeckManager.AddCardToDeck(Famine);
+            DeckManager.AddCardToDeck(BuyCropsFamine2);
+            if (Random.value < 0.25f) DeckManager.AddCardToDeck(BigFamine2);
         },
         DrawMode = CardDrawMode.Important,
         LevelRequirement = 5,
+    };
+    public static readonly TaskCardData BigFamine2 = new TaskCardData()
+    {
+        Name = "Famine",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Hunger);
+            DeckManager.RemoveCardFromDeck(Famine2);
+            DeckManager.AddCardToDeck(BigFamine);
+            DeckManager.AddCardToDeck(BigFamine2);
+        },
+        CallbackWin = (_) =>
+        {
+            DeckManager.RemoveCardFromDeck(Famine2);
+        },
+        DrawMode = CardDrawMode.ReturnToDeck,
+        LevelRequirement = 6,
     };
     public static readonly TaskCardData Feud = new TaskCardData()
     {
@@ -339,11 +470,11 @@ public class AllGameCards
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 3,
         CallbackLose = (_) =>
+        { },
+        CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(PaganCults);
         },
-        CallbackWin = (_) =>
-        { },
         LevelRequirement = 2,
     };
     public static readonly TaskCardData PaganCults = new TaskCardData()
@@ -354,10 +485,11 @@ public class AllGameCards
         CallbackLose = (minister) =>
         {
             DeckManager.AddCardToDeck(PaganCults);
-            DeckManager.AddCardToDeck(SatanCult);
         },
         CallbackWin = (_) =>
-        { },
+        {
+            if (Random.value < 0.5f) DeckManager.AddCardToDeck(SatanCult);
+        },
         DrawMode = CardDrawMode.ReturnToDeck,
         LevelRequirement = 4,
     };
