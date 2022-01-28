@@ -172,7 +172,8 @@ public class TaskCard : MonoBehaviour
 
         if (minister != null)
         {
-            minister.GainExperience(_data.LevelRequirement);
+            if (minister.Level < 4 + _data.LevelRequirement) 
+                minister.GainExperience(_data.LevelRequirement);
             minister.ChangeBoredom(GetExhaustionCost(minister, _data, true));
         }
 
@@ -261,6 +262,7 @@ public class TaskCard : MonoBehaviour
     public int GetExhaustionCost(Minister minister, TaskCardData task, bool succeed = true)
     {
         //TODO Long tasks should eat stamina every turn (?)
+        //TODO Take away stamina if in long chain without being home
 
         int exh = task.LevelRequirement / 2 - minister.Level / 4;
 

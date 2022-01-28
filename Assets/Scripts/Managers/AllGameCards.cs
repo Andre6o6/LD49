@@ -177,8 +177,7 @@ public class AllGameCards
         CallbackLose = (_) =>
             { },
         CallbackWin = (_) =>
-        {
-        },
+        { },
         LevelRequirement = 4,
         DrawMode = CardDrawMode.ReturnToDeck,
     };
@@ -189,12 +188,26 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToDeck(RoadBandits2);
+            DeckManager.AddCardToDeck(RogueMercenaries2);
         },
         CallbackWin = (_) =>
-        { },
+        {
+            DeckManager.AddCardToDeck(RoadBandits2);
+        },
         LevelRequirement = 4,
         DrawMode = CardDrawMode.Important,
+    };
+    public static readonly TaskCardData RogueMercenaries2 = new TaskCardData()
+    {
+        Name = "Rogue mercenaries",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        { },
+        CallbackWin = (_) =>
+        { },
+        LevelRequirement = 5,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData SatanCult = new TaskCardData()
     {
@@ -207,9 +220,10 @@ public class AllGameCards
         },
         CallbackWin = (_) =>
         {
+            DeckManager.AddCardToDeck(PaganCults);
         },
         DrawMode = CardDrawMode.DestroyOnFinish,
-        LevelRequirement = 6,
+        LevelRequirement = 7,
     };
     //TODO monster chain
     
@@ -300,16 +314,17 @@ public class AllGameCards
     {
         Name = "Bribe mercenary band",
         SuiteRequirement = MinisterSuite.Money,
-        TurnsToSolve = 3,
+        TurnsToSolve = 1,
         CallbackLose = (minister) =>
         {
             DeckManager.AddCardToDeck(RogueMercenaries);
         },
-        CallbackWin = (_) =>
+        CallbackWin = (minister) =>
         {
-            if (Random.value < 0.5f) DeckManager.AddCardToDeck(RogueMercenaries);
+            if (minister.Level >= 5 && Random.value < 0.5f) 
+                DeckManager.AddCardToDeck(RogueMercenaries);
         },
-        LevelRequirement = 4,
+        LevelRequirement = 5,
     };
     public static readonly TaskCardData BuyCropsFamine = new TaskCardData()
     {
@@ -444,7 +459,7 @@ public class AllGameCards
     {
         Name = "Reconcile a feud",
         SuiteRequirement = MinisterSuite.Mood,
-        TurnsToSolve = 1,
+        TurnsToSolve = 2,
         CallbackLose = (_) =>
         {},
         CallbackWin = (_) => { },
@@ -454,7 +469,7 @@ public class AllGameCards
     {
         Name = "Quell civil unrest",
         SuiteRequirement = MinisterSuite.Mood,
-        TurnsToSolve = 3,
+        TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
             DeckManager.AddCardToDeck(Revolt);
@@ -583,12 +598,27 @@ public class AllGameCards
         CallbackLose = (_) =>
         {
             EmpireController.ChangeStability(-1);
+            DeckManager.AddCardToDeck(WarRefugees);
         },
         CallbackWin = (_) =>
         {
         },
         LevelRequirement = 5,
         DrawMode = CardDrawMode.Important,
+    };
+    public static readonly TaskCardData WarRefugees = new TaskCardData()
+    {
+        Name = "War refugees",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(Famine2);
+        },
+        CallbackWin = (_) =>
+        { },
+        LevelRequirement = 6,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData Battle2 = new TaskCardData()
     {
@@ -600,6 +630,7 @@ public class AllGameCards
             DeckManager.AddCardToDeck(Battle1);
             DeckManager.AddCardToDeck(RogueMercenaries);
             DeckManager.AddCardToDeck(RoadBandits);
+            DeckManager.AddCardToDeck(WarRefugees2);
         },
         CallbackWin = (_) =>
         {
@@ -610,6 +641,19 @@ public class AllGameCards
         DrawMode = CardDrawMode.DestroyOnFinish,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
+    };
+    public static readonly TaskCardData WarRefugees2 = new TaskCardData()
+    {
+        Name = "War refugees",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(BigFamine);
+        },
+        CallbackWin = (_) => { },
+        LevelRequirement = 8,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData Battle3 = new TaskCardData()
     {
@@ -625,6 +669,7 @@ public class AllGameCards
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
             Battle3.ResetPriority();
+            DeckManager.AddCardToDeck(WarRefugees2);
         },
         LevelRequirement = 9,
         DrawMode = CardDrawMode.DestroyOnFinish,
@@ -641,6 +686,7 @@ public class AllGameCards
         CallbackLose = (_) =>
         {
             DeckManager.AddCardToDeck(BuyRevoltsRepeat);
+            DeckManager.AddCardToDeck(HuntSpies);
         },
         CallbackWin = (_) =>
         {
@@ -651,6 +697,20 @@ public class AllGameCards
         LevelRequirement = 7,
         DrawMode = CardDrawMode.Important,
     };
+    public static readonly TaskCardData HuntSpies = new TaskCardData()
+    {
+        Name = "Counter foreign spies",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(HuntSpies);
+        },
+        CallbackWin = (_) =>
+        { },
+        LevelRequirement = 8,
+        DrawMode = CardDrawMode.ReturnToDeck,
+    };
     public static readonly TaskCardData BuyRevoltsRepeat = new TaskCardData()
     {
         Name = "Supply foreign revolts",
@@ -660,6 +720,7 @@ public class AllGameCards
         {
             DeckManager.AddCardToDeck(BuyRevoltsRepeat);
             DeckManager.AddCardToDeck(Revolt2);
+            DeckManager.AddCardToDeck(HuntSpies);
         },
         CallbackWin = (_) =>
         {
@@ -678,11 +739,29 @@ public class AllGameCards
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 2,
         CallbackLose = (_) =>
-        { },
+        {
+            DeckManager.AddCardToDeck(HuntSpies2);
+        },
         CallbackWin = (_) =>
-        { },
+        {
+            DeckManager.AddCardToDeck(HuntSpies);
+        },
         LevelRequirement = 6,
         DrawMode = CardDrawMode.DestroyOnFinish,
+    };
+    public static readonly TaskCardData HuntSpies2 = new TaskCardData()
+    {
+        Name = "Distribute propaganda",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(BrewingMasses);
+        },
+        CallbackWin = (_) =>
+            { },
+        LevelRequirement = 8,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData BuyRevolts3 = new TaskCardData()
     {
@@ -699,12 +778,32 @@ public class AllGameCards
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
             BuyRevolts3.ResetPriority();
+            DeckManager.AddCardToDeck(HuntSpies2);
+            DeckManager.AddCardToDeck(AfterBuyRevolts);
         },
         LevelRequirement = 10,
         DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
         GrowPriorityEveryTurn = true,
         PriorityChange = 1,
+    };
+    public static readonly TaskCardData AfterBuyRevolts = new TaskCardData()
+    {
+        Name = "Dispose of revolt leaders",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        {
+            AfterBuyRevolts.ResetPriority();
+        },
+        CallbackWin = (_) =>
+        {
+            AfterBuyRevolts.Priority = 0;
+            DeckManager.RemoveCardFromDeck(AfterBuyRevolts);
+        },
+        LevelRequirement = 12,
+        GrowPriorityEveryTurn = true,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     
     public static readonly TaskCardData SpyStart = new TaskCardData()
@@ -719,9 +818,22 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Assassination);
+            DeckManager.AddCardToDeck(BribeSpy);
         },
         LevelRequirement = 6,
         DrawMode = CardDrawMode.Important,
+    };
+    public static readonly TaskCardData BribeSpy = new TaskCardData()
+    {
+        Name = "Bribe foreign minister",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 2,
+        CallbackLose = (_) =>
+        { },
+        CallbackWin = (_) =>
+            { },
+        LevelRequirement = 7,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData Spy1 = new TaskCardData()
     {
@@ -735,6 +847,7 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             DeckManager.AddCardToDeck(Assassination);
+            DeckManager.AddCardToDeck(BribeSpy);
             Spy1.ResetPriority();
         },
         LevelRequirement = 6,
@@ -742,26 +855,87 @@ public class AllGameCards
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainEventPriorityGrowth,
     };
+    public static readonly TaskCardData BribeWitness = new TaskCardData()
+    {
+        Name = "Bribe assassination witness",
+        SuiteRequirement = MinisterSuite.Money,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            EmpireController.ChangeStability(-1);
+            BribeWitness.ResetPriority();
+        },
+        CallbackWin = (_) =>
+        {
+            BribeWitness.ResetPriority();
+        },
+        LevelRequirement = 10,
+        GrowPriorityEveryTurn = true,
+        DrawMode = CardDrawMode.ReturnToDeck,
+    };
+    public static readonly TaskCardData SilenceWitness = new TaskCardData()
+    {
+        Name = "Silence assassination witness",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 1,
+        CallbackLose = (_) =>
+        {
+            EmpireController.ChangeStability(-1);
+            SilenceWitness.ResetPriority();
+        },
+        CallbackWin = (_) =>
+        {
+            SilenceWitness.ResetPriority();
+        },
+        LevelRequirement = 10,
+        GrowPriorityEveryTurn = true,
+        DrawMode = CardDrawMode.ReturnToDeck,
+    };
     public static readonly TaskCardData Assassination = new TaskCardData()
     {
         Name = "Assassinate foreign leader",
         SuiteRequirement = MinisterSuite.Mood,
         TurnsToSolve = 4,
-        CallbackLose = (_) =>
+        CallbackLose = (minister) =>
         {
             DeckManager.AddCardToDeck(Spy1);
+            if (minister != null)
+            {
+                DeckManager.AddCardToDeck(BribeWitness);
+                DeckManager.AddCardToDeck(SilenceWitness);
+            }
         },
         CallbackWin = (_) =>
         {
             EmpireController.Instance.AddWinPoint();
             EmpireController.ChangeStability(3);
             Assassination.ResetPriority();
+            DeckManager.AddCardToDeck(AfterAssassination);
         },
         LevelRequirement = 12,
         DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
         GrowPriorityEveryTurn = true,
         PriorityChange = GameSettings.ChainFinalEventPriorityGrowth,
+    };
+    public static readonly TaskCardData AfterAssassination = new TaskCardData()
+    {
+        Name = "Police annexed territories",
+        SuiteRequirement = MinisterSuite.Army,
+        TurnsToSolve = 4,
+        CallbackLose = (_) =>
+        {
+            DeckManager.AddCardToDeck(Revolt3);
+            DeckManager.AddCardToDeck(Revolt4Important);
+            AfterAssassination.ResetPriority();
+        },
+        CallbackWin = (_) =>
+        {
+            AfterAssassination.ResetPriority();
+        },
+        LevelRequirement = 12,
+        GrowPriorityEveryTurn = true,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     
     //TUTORIAL
