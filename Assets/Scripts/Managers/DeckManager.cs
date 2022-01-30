@@ -60,6 +60,7 @@ public class DeckManager : Singleton<DeckManager>
         _globalDeck.Add(AllGameCards.Mercenaries);
         _globalDeck.Add(AllGameCards.Hunger);
         _globalDeck.Add(AllGameCards.BrewingMasses);
+        _globalDeck.Add(AllGameCards.Dalliance);
         _globalDeck.Add(AllGameCards.Feud);
         _globalDeck.Add(AllGameCards.ReligionPush);
 

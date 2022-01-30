@@ -18,8 +18,10 @@ public class PieceSounds : MonoBehaviour
         _piece.OnReturnedHomeEvent.AddListener(PlayReturnHomeSound);
     }
 
-    private void PlayMoveSound()
+    private void PlayMoveSound(bool inWorld)
     {
+        if (!inWorld) return;
+        
         var clip = _moveClips[Random.Range(0, _moveClips.Length)];
         float pitch = Random.Range(_minPitchRange, _maxPitchRange);
         _channelSo.RaisePlayEvent(clip, pitch: pitch);

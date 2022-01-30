@@ -37,11 +37,6 @@ public class Slot : MonoBehaviour
         if (_homePiece != null && piece != _homePiece)
             return false;
         
-        /*if (_task != null &&
-            _task.Suite != MinisterSuite.None &&    //Suite requirement is absolute
-            _task.Suite != piece.Minister.Suite)
-            return false;*/
-        
         return Empty() && !IsClosed;
     }
 

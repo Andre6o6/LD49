@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -10,19 +11,22 @@ public class AdsCore : MonoBehaviour
     private static string _banner = "Banner_Android";
 
     [SerializeField] private bool _testMode = true;
+    [SerializeField] private TMP_Text _text;
     
     public void Awake()
     {
-        if (_isInitialized) return;
-     
-        //TODO handle platforms
-        //if (!Application.isMobilePlatform) return;
+        if (_isInitialized)
+        {
+            _text.text = "Ad: ON";
+            return;
+        }
         
         Advertisement.Initialize(_gameId, _testMode);
         _isInitialized = true;
         
-        //Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
-        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_RIGHT);
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        Debug.LogError($"ADS initialized {Advertisement.isShowing}, {Advertisement.isSupported}");
+        _text.text = "Ad: ON";
     }
 
     public static void ShowBanner()
@@ -31,6 +35,7 @@ public class AdsCore : MonoBehaviour
         
         Advertisement.Banner.Show(_banner);
         BannerShown = true;
+        Debug.LogError($"Show banner, {Advertisement.Banner.isLoaded}; (inited) {Advertisement.isInitialized}");
     }
 
     public static void HideBanner()
@@ -39,5 +44,6 @@ public class AdsCore : MonoBehaviour
         
         Advertisement.Banner.Hide();
         BannerShown = false;
+        Debug.LogError("Hide banner");
     }
 }

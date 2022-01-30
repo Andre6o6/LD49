@@ -9,7 +9,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public static bool CanDrag = true;
     
     [HideInInspector] public UnityEvent OnBeginDragEvent;
-    [HideInInspector] public UnityEvent OnMovedToSlotEvent;
+    [HideInInspector] public UnityEvent<bool> OnMovedToSlotEvent;    //Play sound or not
     [HideInInspector] public UnityEvent OnCancelMoveEvent;
     [HideInInspector] public UnityEvent OnReturnedHomeEvent;
     
@@ -74,22 +74,26 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (result.gameObject.TryGetComponent(out Slot slot))
             {
-                if (slot.IsHomeSlot && slot != _homeSlot)
+                //Process a case when you return to wrong home card
+                if (slot.IsHomeSlot && slot != _homeSlot && !IsHome)
                 {
                     ReturnHome();
-                    //OnMovedToSlotEvent.Invoke();
+                    OnMovedToSlotEvent.Invoke(false);
                     return;
                 }
 
                 if (slot.CanPutPiece(this))
                 {
-                    PutIntoSlot(slot);
-                    OnMovedToSlotEvent.Invoke();
+                    if (slot != _homeSlot)
+                        PutIntoSlot(slot);
+                    else
+                        ReturnHome();
+                    OnMovedToSlotEvent.Invoke(slot != _homeSlot);
                     return;
                 }
             }
         }
-
+        
         _currentSlot.PutInOriginalPosition(false);
         OnCancelMoveEvent.Invoke();
     }
@@ -97,6 +101,7 @@ public class DragablePiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void ReturnHome()
     {
         PutIntoSlot(_homeSlot, false);
+        _minister.SetNonRecoveryTurn();
         OnReturnedHomeEvent.Invoke();
     }
 

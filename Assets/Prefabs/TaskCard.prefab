@@ -580,7 +580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <size=25>LVL:</size> <b>0</b>
+  m_text: <color=black><size=25>LVL:</size></color> <b>10</b>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -589,8 +589,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4279895928
+  m_fontColor: {r: 0.47058824, g: 0.027450982, b: 0.10269243, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -607,8 +607,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -927,7 +927,7 @@ MonoBehaviour:
       m_Calls: []
   _slot: {fileID: 5883550748785801474}
   _nameText: {fileID: 3005702056966837392}
-  _levelReqFormat: <size=25>LVL:</size> {0}
+  _levelReqFormat: <color=black><size=25>LVL:</size></color> <b>{0}</b>
   _levelReqText: {fileID: 8403171681923446556}
   _timeFormat: 'TIME
 

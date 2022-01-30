@@ -39,7 +39,7 @@ public class Menu : MonoBehaviour
         if (_loadingPanel != null) 
             _loadingPanel.SetActive(true);
         
-        AdsCore.ShowBanner();    //Show banner early for it to init on time
+        //AdsCore.ShowBanner();    //Show banner early for it to init on time
         SceneManager.LoadSceneAsync("Loading");
     }
     

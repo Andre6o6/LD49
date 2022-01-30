@@ -172,8 +172,10 @@ public class TaskCard : MonoBehaviour
 
         if (minister != null)
         {
-            if (minister.Level < 4 + _data.LevelRequirement) 
+            if (minister.Level < 5 + _data.LevelRequirement) 
                 minister.GainExperience(_data.LevelRequirement);
+            else
+                minister.GainExperience(1);
             minister.ChangeBoredom(GetExhaustionCost(minister, _data, true));
         }
 
@@ -271,8 +273,20 @@ public class TaskCard : MonoBehaviour
             exh += 1;
 
         if (exh < 0) exh = 0;
-        if (succeed) exh += 1;    //at least 1 exh on success
+        if (succeed && 
+            !TaskIsTrivial(minister.Level, task.LevelRequirement)) 
+            exh += 1;    //at least 1 exh on success
+        
+        if (exh > 5) exh = 5;    //limit to 5
         
         return -exh;
+    }
+
+    private bool TaskIsTrivial(int level, int levelReq)
+    {
+        if (level > 5 && levelReq == 1) return true;
+        if (level >= 8 && levelReq == 2) return true;
+        if (level >= 12 && levelReq == 3) return true;
+        return false;
     }
 }

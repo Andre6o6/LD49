@@ -11,7 +11,7 @@ public class LoadingScene : MonoBehaviour
     
     private IEnumerator Start()
     {
-        if(!AdsCore.BannerShown) AdsCore.ShowBanner();
+        AdsCore.ShowBanner();
         
         for (float time = 0; time < _loadingTime; time += Time.deltaTime)
         {

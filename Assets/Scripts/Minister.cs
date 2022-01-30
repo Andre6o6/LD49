@@ -7,6 +7,7 @@ public class Minister : MonoBehaviour
     public event System.Action OnMinisterDiedEvent;
     public event System.Action<int> OnMinisterLevelUpEvent;
     public event System.Action<int> OnMinisterBoredomChangeEvent;
+    public event System.Action<int, string> OnMinisterUnavailableChangeEvent;
 
     public Bio Bio { get; private set; }
     public TraitControlledData Personality { get; private set; }
@@ -23,12 +24,23 @@ public class Minister : MonoBehaviour
     [SerializeField] private Image _experienceBarImage;
     [SerializeField] private int _boredomMinThreshold = -11;
     [SerializeField] private int _boredomMaxThreshold = 11;
+    [SerializeField] private int _sleepTurns = 2;
+    [SerializeField] private int _turnsBeforeSleep = 3;
+    [SerializeField, Range(0, 1)] private float _sleepChance = 0.5f;
+    private Image _borderImage;
     private int _currentExp;
     private Color _defaultColor;
     private bool _exhausted;
 
+    private int _noRecoveryTurnCount;    //For not recovering when just returned
+
+    private string _unavailableReason = "Sleeping";
+    private int _unavailableTurnsCount = -1;
+
     private void Awake()
     {
+        _borderImage = GetComponentInChildren<Image>();
+        
         CanAct = true;
 
         _piece ??= GetComponent<DragablePiece>();
@@ -46,9 +58,12 @@ public class Minister : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K)) LoseLevel();
             
             if (Input.GetKeyDown(KeyCode.A)) ChangeBoredom(+1);
+            if (Input.GetKeyDown(KeyCode.Q)) ChangeBoredom(-1);
             if (Input.GetKeyDown(KeyCode.S)) EmpireController.ChangeStability(+1);
             
             if (Input.GetKeyDown(KeyCode.W) && _piece.IsHome) EmpireController.Instance.AddWinPoint();
+            
+            if (Input.GetKeyDown(KeyCode.U)) SetUnavailable(2);
         }
     }
 
@@ -105,6 +120,9 @@ public class Minister : MonoBehaviour
 
     public void ChangeBoredom(int delta)
     {
+        //TODO skips task exh 
+        if (_unavailableTurnsCount > 0) return;    //Not change boredom while sleeping to prevent ui change
+        
         Boredom += delta; 
         Boredom = Mathf.Clamp(Boredom, _boredomMinThreshold, _boredomMaxThreshold);
         
@@ -135,7 +153,26 @@ public class Minister : MonoBehaviour
         OnMinisterDiedEvent?.Invoke();
     }
 
-    private void TickTurnTimer()
+    public void SetUnavailable(int turns, string reason = "SLEEPING", bool forceHome = true)
+    {
+        _unavailableTurnsCount = turns;
+        if (forceHome) _piece.ReturnHome();
+        _unavailableReason = reason;
+
+        CanAct = false;
+        _defaultColor = _borderImage.color;
+        _borderImage.color = Color.black;
+        OnMinisterUnavailableChangeEvent?.Invoke(turns, reason);
+    }
+
+    public void SetNonRecoveryTurn(int turnCount = 1)
+    {
+        if (_exhausted) return;
+        
+        _noRecoveryTurnCount = turnCount;
+    }
+
+    private void TickTurnTimer(bool _)
     {
         GameController.Instance.AdvanceTurn();
     }
@@ -143,16 +180,43 @@ public class Minister : MonoBehaviour
     private void OnAdvanceTurn()
     {
         if (Dead) return;
-        
+
         if (_piece.IsHome)
         {
-            ChangeBoredom(1);
+            //Sleep
+            if (_unavailableTurnsCount > 1)
+            {
+                _unavailableTurnsCount -= 1;
+                OnMinisterUnavailableChangeEvent?.Invoke(_unavailableTurnsCount, _unavailableReason);
+                return;
+            }
+
+            if (_unavailableTurnsCount == 1)
+            {
+                CanAct = true;
+                Boredom = _boredomMaxThreshold - 1;
+                OnMinisterBoredomChangeEvent?.Invoke(Boredom);
+
+                _borderImage.color = _defaultColor;
+
+                _unavailableTurnsCount = 0; //Set to 0 to only call this once
+                return;
+            }
+        }
+
+        if (_piece.IsHome || _exhausted)    //exhausted spends a turn on task
+        {
+            //Passive boredom regen
+            if (_noRecoveryTurnCount <= 0)
+                ChangeBoredom(1);
+            else
+                _noRecoveryTurnCount -= 1;
         }
 
         if (!CanAct && Boredom >= 0) //stop recover
         {
             CanAct = true;
-            GetComponentInChildren<Image>().color = _defaultColor;
+            _borderImage.color = _defaultColor;
             _exhausted = false;
         }
 
@@ -161,14 +225,15 @@ public class Minister : MonoBehaviour
             GetExhausted();
         }
 
-        if (CanAct) TryKill();    //TODO trait maybe?
+        if (CanAct) TryKill();
     }
 
     private void GetExhausted()
     {
         CanAct = false;
-        _defaultColor = GetComponentInChildren<Image>().color;
-        GetComponentInChildren<Image>().color  = Color.black;
+        _noRecoveryTurnCount = 0;    //if exhausted - start recover instantly
+        _defaultColor = _borderImage.color;
+        _borderImage.color = Color.black;
         _exhausted = true;
     }
 

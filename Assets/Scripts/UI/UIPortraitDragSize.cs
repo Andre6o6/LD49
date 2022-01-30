@@ -19,11 +19,12 @@ public class UIPortraitDragSize : MonoBehaviour
         _piece.OnCancelMoveEvent.AddListener(ChangePortraitSize);
         _piece.OnReturnedHomeEvent.AddListener(ChangePortraitSize);    //can be called externally
     }
-    
+
     private void ChangePortraitSize()
     {
         _portraitRectTransform.sizeDelta = _piece.IsHome ? _fullPortraitSize : _dragPortraitSize;
     }
+    private void ChangePortraitSize(bool notHome) => ChangePortraitSize();
 
     private void MinimizePortrait()
     {

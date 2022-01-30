@@ -47,6 +47,11 @@ public class EmpireController : Singleton<EmpireController>
         GetMinLevelMinister();    //TEST
     }
 
+    public IEnumerable<Minister> GetAllMinisters()
+    {
+        return _ministers;
+    }
+
     public void RemoveMinister(MinisterSuite suite)
     {
         if (suite == MinisterSuite.Army)

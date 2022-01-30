@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AllGameCards
 {
+    private static int _stabilityForWinPoint = 4;
+    
     //Army
     public static readonly TaskCardData TrainArmy = new TaskCardData()
     {
@@ -41,6 +43,7 @@ public class AllGameCards
             if (minister.Level < 5) minister.GainLevel();
         },
         LevelRequirement = 5,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData Revolt = new TaskCardData()
     {
@@ -49,45 +52,32 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (_) =>
         {
-            DeckManager.AddCardToDeck(Revolt);
+            if (Random.value < 0.25f)
+            { 
+                DeckManager.AddCardToDeck(Revolt2);
+            }
         },
         CallbackWin = (_) =>
         {
             if (Random.value < 0.5f)
-            {
-                DeckManager.RemoveCardFromDeck(Revolt);
+            { 
                 DeckManager.AddCardToDeck(Revolt2);
             }
         },
         LevelRequirement = 1,
-    };
-    public static TaskCardData RevoltImportant = new TaskCardData()
-    {
-        Name = "Revolt",
-        SuiteRequirement = MinisterSuite.Army,
-        TurnsToSolve = 1,
-        CallbackLose = (_) =>
-        {
-            DeckManager.AddCardToDeck(Revolt2);
-        },
-        CallbackWin = (_) =>
-        { },
-        LevelRequirement = 1,
-        DrawMode = CardDrawMode.Important,
     };
     public static readonly TaskCardData Revolt2 = new TaskCardData()
     {
         Name = "Revolt",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 2,
-        CallbackLose = (_) =>
+        CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToDeck(Revolt);
-            DeckManager.AddCardToDeck(Revolt2);
+            if (minister == null) DeckManager.AddCardToDeck(Revolt2);
         },
         CallbackWin = (_) =>
         {
-            if (Random.value < 0.5f)
+            if (Random.value < 0.25f)
             {
                 DeckManager.RemoveCardFromDeck(Revolt2);
                 DeckManager.AddCardToDeck(Revolt3);
@@ -101,16 +91,19 @@ public class AllGameCards
         Name = "Revolt",
         SuiteRequirement = MinisterSuite.Army,
         TurnsToSolve = 3,
-        CallbackLose = (_) =>
+        CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToDeck(Revolt2);
-            DeckManager.AddCardToDeck(Revolt3);
-            DeckManager.AddCardToDeck(Revolt4Important);
+            if (minister == null)
+            {
+                DeckManager.AddCardToDeck(Revolt3);
+                DeckManager.AddCardToDeck(Revolt4Important);
+            }
         },
         CallbackWin = (_) =>
         {
             DeckManager.RemoveCardFromDeck(Revolt);
             DeckManager.RemoveCardFromDeck(Revolt2);
+            DeckManager.RemoveCardFromDeck(Revolt3);
         },
         LevelRequirement = 5,
         DrawMode = CardDrawMode.ReturnToDeck,
@@ -126,7 +119,6 @@ public class AllGameCards
         },
         CallbackWin = (_) =>
         {
-            DeckManager.RemoveCardFromDeck(Revolt);
             DeckManager.RemoveCardFromDeck(Revolt2);
             DeckManager.RemoveCardFromDeck(Revolt3);
         },
@@ -317,7 +309,8 @@ public class AllGameCards
         TurnsToSolve = 1,
         CallbackLose = (minister) =>
         {
-            DeckManager.AddCardToDeck(RogueMercenaries);
+            if (minister != null)
+                DeckManager.AddCardToDeck(RogueMercenaries);
         },
         CallbackWin = (minister) =>
         {
@@ -325,6 +318,7 @@ public class AllGameCards
                 DeckManager.AddCardToDeck(RogueMercenaries);
         },
         LevelRequirement = 5,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData BuyCropsFamine = new TaskCardData()
     {
@@ -478,6 +472,29 @@ public class AllGameCards
         { },
         DrawMode = CardDrawMode.ReturnToDeck,
         LevelRequirement = 3,
+    };
+    public static readonly TaskCardData Dalliance = new TaskCardData()
+    {
+        Name = "Unfavorable dalliance",
+        SuiteRequirement = MinisterSuite.Mood,
+        TurnsToSolve = 2,
+        CallbackLose = (minister) =>
+        {
+            if (minister != null)
+            {
+                minister.ChangeBoredom(-2);
+            }
+        },
+        CallbackWin = (minister) =>
+        {
+            foreach (var otherMinister in EmpireController.Instance.GetAllMinisters())
+            {
+                if (minister != otherMinister) otherMinister.ChangeBoredom(2);
+            }
+            minister.SetUnavailable(2);
+        },
+        LevelRequirement = 5,
+        DrawMode = CardDrawMode.ReturnToDeck,
     };
     public static readonly TaskCardData ReligionPush = new TaskCardData()
     {
@@ -667,7 +684,7 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             EmpireController.Instance.AddWinPoint();
-            EmpireController.ChangeStability(3);
+            EmpireController.ChangeStability(_stabilityForWinPoint);
             Battle3.ResetPriority();
             DeckManager.AddCardToDeck(WarRefugees2);
         },
@@ -776,7 +793,7 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             EmpireController.Instance.AddWinPoint();
-            EmpireController.ChangeStability(3);
+            EmpireController.ChangeStability(_stabilityForWinPoint);
             BuyRevolts3.ResetPriority();
             DeckManager.AddCardToDeck(HuntSpies2);
             DeckManager.AddCardToDeck(AfterBuyRevolts);
@@ -801,7 +818,7 @@ public class AllGameCards
             AfterBuyRevolts.Priority = 0;
             DeckManager.RemoveCardFromDeck(AfterBuyRevolts);
         },
-        LevelRequirement = 12,
+        LevelRequirement = 10,
         GrowPriorityEveryTurn = true,
         DrawMode = CardDrawMode.ReturnToDeck,
     };
@@ -908,11 +925,11 @@ public class AllGameCards
         CallbackWin = (_) =>
         {
             EmpireController.Instance.AddWinPoint();
-            EmpireController.ChangeStability(3);
+            EmpireController.ChangeStability(_stabilityForWinPoint);
             Assassination.ResetPriority();
             DeckManager.AddCardToDeck(AfterAssassination);
         },
-        LevelRequirement = 12,
+        LevelRequirement = 10,
         DrawMode = CardDrawMode.DestroyOnFinish,
         WinPoint = true,
         GrowPriorityEveryTurn = true,

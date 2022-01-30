@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
             _channelSo.OnAudioPlayRequested += PlaySound;
             _channelSo.OnAudioUniquePlayRequested += PlayUniqueSound;
         }
+
+        if (GameSettings.MuteSounds) SetMuteSounds(true);
     }
 
     private void OnDestroy()
